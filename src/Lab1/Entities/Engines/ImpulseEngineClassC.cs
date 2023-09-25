@@ -2,7 +2,7 @@
 
 public class ImpulseEngineClassC : ImpulseEngineBase
 {
-    private const double FuelConsumedPerHour = 5;
+    private const double FuelConsumedPerHour = 10;
 
     public override double GetTimeToTravel(double pathLength)
     {
