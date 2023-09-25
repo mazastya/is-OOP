@@ -2,11 +2,11 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
 
-public class JumpEngine : EngineBase
+public class JumpEngines : EngineBase
 {
     private const double FuelConsumedPerHour = 50;
 
-    public JumpEngine(TypesOfJumpEngines typeOfJumpEngines)
+    public JumpEngines(TypesOfJumpEngines typeOfJumpEngines)
     {
         TypeOfJumpEngines = typeOfJumpEngines;
     }
