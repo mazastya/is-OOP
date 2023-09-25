@@ -2,4 +2,7 @@
 
 public abstract class EngineBase
 {
+    public abstract double GetTimeToTravel(double pathLength);  // сколько времени в космосе (для вынесения вердикта)
+
+    public abstract double HowMuchFuelIsSpentOnTheJourney(double pathLenght);  // сколько топлива потратили
 }
