@@ -3,7 +3,6 @@
 public class PhotonDeflectors : DeflectorBase
 {
     public PhotonDeflectors()
-        : base(true)
     {
         HitPointDeflector = 300000;
     }

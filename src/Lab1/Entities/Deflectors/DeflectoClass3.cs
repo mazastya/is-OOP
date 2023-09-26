@@ -3,7 +3,6 @@
 public class DeflectoClass3 : DeflectorBase
 {
     public DeflectoClass3()
-        : base(true)
     {
         HitPointDeflector = 1000;
     }
