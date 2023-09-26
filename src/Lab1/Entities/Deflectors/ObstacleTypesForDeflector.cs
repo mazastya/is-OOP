@@ -1,6 +1,6 @@
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 
-public enum ObstacleTypes
+public enum ObstacleTypesForDeflector
 {
     None,
     Asteroid = 50,

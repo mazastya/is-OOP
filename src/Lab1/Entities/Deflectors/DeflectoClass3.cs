@@ -2,7 +2,7 @@
 
 public class DeflectoClass3 : DeflectorBase
 {
-    public DeflectoClass3()
+    protected DeflectoClass3()
     {
         HitPointDeflector = 1000;
     }

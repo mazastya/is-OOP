@@ -2,7 +2,7 @@
 
 public class PhotonDeflectors : DeflectorBase
 {
-    public PhotonDeflectors()
+    protected PhotonDeflectors()
     {
         HitPointDeflector = 300000;
     }

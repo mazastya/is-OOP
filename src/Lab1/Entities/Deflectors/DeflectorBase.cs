@@ -3,8 +3,8 @@
 public abstract class DeflectorBase
 {
     protected double HitPointDeflector { get; set; }
-    protected void TakeDamage(ObstacleTypes obstacleType)
+    protected void TakeDamage(ObstacleTypesForDeflector obstacleTypeForDeflector)
     {
-        HitPointDeflector -= (int)obstacleType;
+        HitPointDeflector -= (int)obstacleTypeForDeflector;
     }
 }

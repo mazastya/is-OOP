@@ -2,17 +2,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Armour;
 
 public abstract class ArmourBase
 {
-    protected DeflectorBase(bool status)
+    protected double HitPointArmour { get; set; }
+    protected void TakeDamage(ObstacleTypeForArmour obstacleTypeForArmour)
     {
-        Status = status;
-    }
-
-    protected double HitPointDeflector { get; set; }
-
-    protected bool Status { get; set; }
-
-    protected void TakeDamage(ObstacleTypes obstacleType)
-    {
-        HitPointDeflector -= (int)obstacleType;
+        HitPointArmour -= (int)obstacleTypeForArmour;
     }
 }
