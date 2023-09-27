@@ -8,19 +8,19 @@ using Microsoft.VisualBasic;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1;
 
-public abstract class Ship
+public abstract class ShipBase
 {
     private IDeflector _deflectorBase;
     private EngineBase _engineBase;
     private ImpulseEngineBase _impulseEngineBase;
     private ArmourBase _armourBase;
 
-    protected Ship(IDeflector deflectorBase, EngineBase engineBase, ImpulseEngineBase impulseEngineBase, ArmourBase armourBase)
+    protected ShipBase(IDeflector deflectorBase, EngineBase engineBase, ImpulseEngineBase impulseEngineBase, ArmourBase armourBase)
     {
-        _deflectorBase = deflectorBase;
-        _armourBase = armourBase ?? throw new ArgumentNullException(nameof(armourBase));
-        _engineBase = engineBase;
-        _impulseEngineBase = impulseEngineBase;
+        _deflectorBase = deflectorBase ?? throw new ArgumentNullException(nameof(deflectorBase));
+        _armourBase = armourBase;
+        _engineBase = engineBase ?? throw new ArgumentNullException(nameof(engineBase));
+        _impulseEngineBase = impulseEngineBase ?? throw new ArgumentNullException(nameof(impulseEngineBase));
     }
 
     public void GetAttack(Collection obstacles)
