@@ -1,10 +1,27 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
+﻿using System;
+using System.Collections.Generic;
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.Obstacle;
+using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
-public abstract class DeflectorBase
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
+
+public abstract class DeflectorBase : IDeflector
 {
-    protected double HitPointDeflector { get; set; }
-    protected void TakeDamage(ObstacleTypesForDeflector obstacleTypeForDeflector)
+    private double _currentHitPointDeflector;
+    protected DeflectorBase(int num)
     {
-        HitPointDeflector -= (int)obstacleTypeForDeflector;
+        _currentHitPointDeflector = num;
+    }
+
+    public bool IsDeadInside => _currentHitPointDeflector == 0;
+
+    public void TakeDamage(ObstacleBase obstacle)
+    {
+        double damage = _currentHitPointDeflector >= obstacle.Damage
+            ? obstacle.Damage
+            : _currentHitPointDeflector;
+
+        _currentHitPointDeflector -= damage;
+        obstacle.TakeDamage(damage);
     }
 }

@@ -2,8 +2,8 @@
 
 public class DeflectorClass2 : DeflectorBase
 {
-    protected DeflectorClass2()
+    public DeflectorClass2()
+        : base(300)
     {
-        HitPointDeflector = 300;
     }
 }

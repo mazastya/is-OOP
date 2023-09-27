@@ -2,8 +2,8 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 
 public class DeflectorClass1 : DeflectorBase
 {
-    protected DeflectorClass1()
+    public DeflectorClass1()
+        : base(100)
     {
-        HitPointDeflector = 100;
     }
 }

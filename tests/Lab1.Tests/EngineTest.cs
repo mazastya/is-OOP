@@ -1,3 +1,4 @@
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
 using Xunit;
 
