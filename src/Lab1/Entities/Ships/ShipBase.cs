@@ -10,25 +10,27 @@ namespace Itmo.ObjectOrientedProgramming.Lab1;
 
 public abstract class ShipBase
 {
-    private IDeflector _deflectorBase;
-    private EngineBase _engineBase;
-    private ImpulseEngineBase _impulseEngineBase;
-    private ArmourBase _armourBase;
-
-    protected ShipBase(IDeflector deflectorBase, EngineBase engineBase, ImpulseEngineBase impulseEngineBase, ArmourBase armourBase)
+    protected ShipBase(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase)
     {
-        _deflectorBase = deflectorBase ?? throw new ArgumentNullException(nameof(deflectorBase));
-        _armourBase = armourBase;
-        _engineBase = engineBase ?? throw new ArgumentNullException(nameof(engineBase));
-        _impulseEngineBase = impulseEngineBase ?? throw new ArgumentNullException(nameof(impulseEngineBase));
+        DeflectorBase = deflectorBase ?? throw new ArgumentNullException(nameof(deflectorBase));
+        ArmourBase = armourBase;
+        EngineBase = engineBase ?? throw new ArgumentNullException(nameof(engineBase));
+        JumpEngines = jumpEngines ?? throw new ArgumentNullException(nameof(jumpEngines));
     }
+
+    public IDeflector DeflectorBase { get; }
+
+    // public PhotonDeflectors PhotonDeflectors { get; }
+    public EngineBase EngineBase { get; }
+    public JumpEngines JumpEngines { get; }
+    public ArmourBase ArmourBase { get; }
 
     public void GetAttack(Collection obstacles)
     {
         foreach (ObstacleBase obstacle in obstacles)
         {
-            _deflectorBase.TakeDamage(obstacle);
-            _armourBase.TakeDamage(obstacle);
+            DeflectorBase.TakeDamage(obstacle);
+            ArmourBase.TakeDamage(obstacle);
         }
     }
 }

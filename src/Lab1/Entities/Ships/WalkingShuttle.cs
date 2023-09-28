@@ -6,8 +6,17 @@ namespace Itmo.ObjectOrientedProgramming.Lab1;
 
 public class WalkingShuttle : ShipBase
 {
-    protected WalkingShuttle(IDeflector deflectorBase, EngineBase engineBase, ImpulseEngineBase impulseEngineBase, ArmourBase armourBase)
-        : base(deflectorBase, engineBase, impulseEngineBase, armourBase)
+    private readonly EngineBase _engineBase;
+    private readonly ArmourBase _armourBase;
+
+    public WalkingShuttle(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase)
+        : base(
+            deflectorBase,
+            engineBase: new ImpulseEngineClassC(),
+            jumpEngines,
+            armourBase: new ArmourClass1())
     {
+        _engineBase = engineBase;
+        _armourBase = armourBase;
     }
 }

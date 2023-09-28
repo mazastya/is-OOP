@@ -1,5 +1,8 @@
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.Armour;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.Obstacle;
+using Microsoft.VisualBasic;
 using Xunit;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Tests;
