@@ -4,9 +4,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
 public abstract class ObstacleBase
 {
-    protected ObstacleBase(double num)
+    protected ObstacleBase(double damageFromObstacle)
     {
-        Damage = num;
+        Damage = damageFromObstacle;
     }
 
     public double Damage { get; private set; }
