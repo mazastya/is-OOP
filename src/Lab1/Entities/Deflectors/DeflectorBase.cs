@@ -8,9 +8,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 public abstract class DeflectorBase : IDeflector
 {
     private double _currentHitPointDeflector;
-    protected DeflectorBase(int num)
+    protected DeflectorBase(int hitPointFromDeflector)
     {
-        _currentHitPointDeflector = num;
+        _currentHitPointDeflector = hitPointFromDeflector;
     }
 
     public bool IsDeadInside => _currentHitPointDeflector == 0;
