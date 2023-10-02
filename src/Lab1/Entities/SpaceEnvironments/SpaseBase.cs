@@ -12,4 +12,4 @@ public class SpaseBase
     {
         _obstacle = obstacle;
     }
-}
+    }
