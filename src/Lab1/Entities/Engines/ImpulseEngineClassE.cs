@@ -6,21 +6,21 @@ public class ImpulseEngineClassE : ImpulseEngineBase
 {
     private readonly double _speed = 30;
 
-    public override double GetTimeToTravel(double pathLength)
+    public override double GetTimeToTravel(double pathLength, int weightCharacteristic)
     {
-        return pathLength / _speed;
+        return (pathLength / _speed) * weightCharacteristic;
     }
 
-    public override double HowMuchFuelIsSpentOnTheJourney(double pathLenght)
+    public override double HowMuchFuelIsSpentOnTheJourney(double pathLenght, int weightCharacteristic)
     {
-        double fuelConsumedPerHour = GetGettingAcceleration(pathLenght) * pathLenght;
+        double fuelConsumedPerHour = GetGettingAcceleration(pathLenght, weightCharacteristic) * pathLenght;
 
         // double fuelConsumedPerHour = Math.Log(1 + (pathLenght * Math.Log(GetGettingAcceleration(pathLenght), Math.E)));
-        return FuelToGetStarted + (fuelConsumedPerHour * pathLenght);
+        return (FuelToGetStarted + (fuelConsumedPerHour * pathLenght)) * weightCharacteristic;
     }
 
-    private double GetGettingAcceleration(double pathLength)
+    private double GetGettingAcceleration(double pathLength, int weightCharacteristic)
     {
-        return Math.E * Math.Pow(GetTimeToTravel(pathLength), 2) / 6;
+        return (Math.E * Math.Pow(GetTimeToTravel(pathLength, weightCharacteristic), 2) / 6) * weightCharacteristic;
     }
 }

@@ -14,23 +14,23 @@ public class JumpEngines : EngineBase
     private TypesOfJumpEngines TypeOfJumpEngines { get; }
     private double ShipSpeed { get; } = 100;
 
-    public override double HowMuchFuelIsSpentOnTheJourney(double pathLenght)
+    public override double HowMuchFuelIsSpentOnTheJourney(double pathLenght, int weightCharacteristic)
     {
         switch (TypeOfJumpEngines)
         {
             case TypesOfJumpEngines.AlphaJumpEngine:
             {
-                return GetTimeToTravel(pathLenght) * FuelConsumedPerHour;
+                return (GetTimeToTravel(pathLenght, weightCharacteristic) * FuelConsumedPerHour) * weightCharacteristic;
             }
 
             case TypesOfJumpEngines.GammaJumpEngine:
             {
-                return GetTimeToTravel(pathLenght) * FuelConsumedPerHour * FuelConsumedPerHour;
+                return (GetTimeToTravel(pathLenght, weightCharacteristic) * FuelConsumedPerHour * FuelConsumedPerHour) * weightCharacteristic;
             }
 
             case TypesOfJumpEngines.OmegaJumpEngine:
             {
-                return GetTimeToTravel(pathLenght) * FuelConsumedPerHour * Math.Log(FuelConsumedPerHour);
+                return (GetTimeToTravel(pathLenght, weightCharacteristic) * FuelConsumedPerHour * Math.Log(FuelConsumedPerHour)) * weightCharacteristic;
             }
 
             default:
@@ -38,8 +38,8 @@ public class JumpEngines : EngineBase
         }
     }
 
-    public override double GetTimeToTravel(double pathLength)
+    public override double GetTimeToTravel(double pathLength, int weightCharacteristic)
     {
-        return pathLength / ShipSpeed;
+        return (pathLength / ShipSpeed) * weightCharacteristic;
     }
 }
