@@ -11,12 +11,13 @@ public class Augur : ShipBase
     private readonly JumpEngines _jumpEngines;
     private readonly ArmourBase _armourBase;
 
-    public Augur(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase)
+    public Augur(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
         : base(
             deflectorBase: new DeflectorClass3(),
             engineBase: new ImpulseEngineClassE(),
             jumpEngines: new JumpEngines(TypesOfJumpEngines.AlphaJumpEngine),
-            armourBase: new ArmourClass3())
+            armourBase: new ArmourClass3(),
+            weightCharacteristic: weightCharacteristic)
     {
         _deflectorBase = deflectorBase;
         _engineBase = engineBase;

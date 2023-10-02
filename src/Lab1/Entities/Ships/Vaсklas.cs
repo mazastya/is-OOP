@@ -11,12 +11,13 @@ public class Vaсklas : ShipBase
     private readonly JumpEngines _jumpEngines;
     private readonly ArmourBase _armourBase;
 
-    public Vaсklas(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase)
+    public Vaсklas(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
         : base(
             deflectorBase: new DeflectorClass1(),
             engineBase: new ImpulseEngineClassE(),
             jumpEngines: new JumpEngines(TypesOfJumpEngines.GammaJumpEngine),
-            armourBase: new ArmourClass2())
+            armourBase: new ArmourClass2(),
+            weightCharacteristic: weightCharacteristic)
     {
         _deflectorBase = deflectorBase;
         _engineBase = engineBase;

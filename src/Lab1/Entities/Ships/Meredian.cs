@@ -11,12 +11,13 @@ public class Meredian : ShipBase
     private readonly JumpEngines _jumpEngines;
     private readonly ArmourBase _armourBase;
 
-    public Meredian(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase)
+    public Meredian(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
         : base(
             deflectorBase: new PhotonDeflectors(new DeflectorClass2()),
             engineBase: new ImpulseEngineClassE(),
             jumpEngines,
-            armourBase: new ArmourClass2())
+            armourBase: new ArmourClass2(),
+            weightCharacteristic: weightCharacteristic)
     {
         _deflectorBase = deflectorBase;
         _engineBase = engineBase;

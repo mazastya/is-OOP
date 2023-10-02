@@ -10,8 +10,11 @@ namespace Itmo.ObjectOrientedProgramming.Lab1;
 
 public abstract class ShipBase
 {
-    protected ShipBase(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase)
+    private readonly int _weightCharacteristic;
+
+    protected ShipBase(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
     {
+        _weightCharacteristic = weightCharacteristic;
         DeflectorBase = deflectorBase ?? throw new ArgumentNullException(nameof(deflectorBase));
         ArmourBase = armourBase;
         EngineBase = engineBase ?? throw new ArgumentNullException(nameof(engineBase));

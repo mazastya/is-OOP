@@ -9,12 +9,13 @@ public class WalkingShuttle : ShipBase
     private readonly EngineBase _engineBase;
     private readonly ArmourBase _armourBase;
 
-    public WalkingShuttle(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase)
+    public WalkingShuttle(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
         : base(
             deflectorBase,
             engineBase: new ImpulseEngineClassC(),
             jumpEngines,
-            armourBase: new ArmourClass1())
+            armourBase: new ArmourClass1(),
+            weightCharacteristic: weightCharacteristic)
     {
         _engineBase = engineBase;
         _armourBase = armourBase;
