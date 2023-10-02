@@ -8,6 +8,7 @@ public class WalkingShuttle : ShipBase
 {
     private readonly EngineBase _engineBase;
     private readonly ArmourBase _armourBase;
+    private readonly int _weightCharacteristic;
 
     public WalkingShuttle(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
         : base(
@@ -15,9 +16,10 @@ public class WalkingShuttle : ShipBase
             engineBase: new ImpulseEngineClassC(),
             jumpEngines,
             armourBase: new ArmourClass1(),
-            weightCharacteristic: weightCharacteristic)
+            weightCharacteristic: 10)
     {
         _engineBase = engineBase;
         _armourBase = armourBase;
+        _weightCharacteristic = weightCharacteristic;
     }
 }

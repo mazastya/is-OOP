@@ -10,6 +10,7 @@ public class Vaсklas : ShipBase
     private readonly EngineBase _engineBase;
     private readonly JumpEngines _jumpEngines;
     private readonly ArmourBase _armourBase;
+    private readonly int _weightCharacteristic;
 
     public Vaсklas(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
         : base(
@@ -17,11 +18,12 @@ public class Vaсklas : ShipBase
             engineBase: new ImpulseEngineClassE(),
             jumpEngines: new JumpEngines(TypesOfJumpEngines.GammaJumpEngine),
             armourBase: new ArmourClass2(),
-            weightCharacteristic: weightCharacteristic)
+            weightCharacteristic: 20)
     {
         _deflectorBase = deflectorBase;
         _engineBase = engineBase;
         _jumpEngines = jumpEngines;
         _armourBase = armourBase;
+        _weightCharacteristic = weightCharacteristic;
     }
 }
