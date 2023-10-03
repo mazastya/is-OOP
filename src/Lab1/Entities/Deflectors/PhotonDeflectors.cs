@@ -1,4 +1,5 @@
 ﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab1.Models;
 using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacle;
 using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
@@ -14,20 +15,18 @@ public class PhotonDeflectors : IDeflector
         _deflectorBase = deflectorBase;
     }
 
-    public void TakeDamage(ObstacleBase obstacle)
+    public ResultOfDamage TakeDamage(ObstacleBase obstacle)
     {
-        if (obstacle is PhotoneFlash)
-        {
-            if (_anountOfFlash == 0)
-            {
-                throw new ArgumentException("djfdjfc");
-            }
+        if (obstacle is not PhotoneFlash)
+            return _deflectorBase.TakeDamage(obstacle);
 
-            _anountOfFlash--;
-        }
-        else
+        if (_anountOfFlash == 0)
         {
-            _deflectorBase.TakeDamage(obstacle);
+            return ResultOfDamage.CrewDied;
         }
+
+        _anountOfFlash--;
+        obstacle.TakeDamage(3000);
+        return ResultOfDamage.Success;
     }
 }

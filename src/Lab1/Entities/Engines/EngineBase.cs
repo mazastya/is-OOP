@@ -1,4 +1,8 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Entities.Route;
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaseBase;
+using Itmo.ObjectOrientedProgramming.Lab1.Models;
+
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
 
 public abstract class EngineBase
 {
@@ -6,8 +10,15 @@ public abstract class EngineBase
 
     public abstract double HowMuchFuelIsSpentOnTheJourney(double pathLenght, int weightCharacteristic);  // сколько топлива потратили
 
-    // protected IsEngineSuitableForTheEnvironment(EngineBase engineBase, SpaseBase.SpaseBase spaseBase)
+    public virtual EngineBase? IsEngineSuitableForTheEnvironment(PathSegment pathSegment)
+    {
+        return pathSegment.Base is HighDensitySpaceNebulae ? null : this;
+    }
+
+    // public Result IsPossibleToTravel(double wayLength, PathSegment pathSegment)
     // {
-    //     if (engineBase is ImpulseEngineClassC and spaseBase is )
+    //     if (pathSegment.Base is not NitrinoParticleNebulae)
+    //         return Result.SpaceShipLostUnsuitableBiome;
+    //     return wayLength <= MaximumLengthOfJump ? ResultOfFly.Success : ResultOfFly.SpaseShipLostBadJump;
     // }
 }

@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Armour;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
+using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacle;
 using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 using Microsoft.VisualBasic;
 
@@ -10,31 +13,37 @@ namespace Itmo.ObjectOrientedProgramming.Lab1;
 
 public abstract class ShipBase
 {
-    private readonly int _weightCharacteristic;
-
-    protected ShipBase(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
+    protected ShipBase(IDeflector? deflectorBase, EngineBase? engineBase, JumpEngines? jumpEngines, ArmourBase armourBase, AntiNeutronEmitter? antiNeutronEmitter, int weightCharacteristic)
     {
-        _weightCharacteristic = weightCharacteristic;
-        DeflectorBase = deflectorBase ?? throw new ArgumentNullException(nameof(deflectorBase));
+        WeightCharacteristic = weightCharacteristic;
+        DeflectorBase = deflectorBase;
         ArmourBase = armourBase;
-        EngineBase = engineBase ?? throw new ArgumentNullException(nameof(engineBase));
-        JumpEngines = jumpEngines ?? throw new ArgumentNullException(nameof(jumpEngines));
+        AntiNeutronEmitter = antiNeutronEmitter;
+
+        // if (engineBase is null and jumpEngines is null)
+        EngineBase = engineBase;
+        JumpEngines = jumpEngines;
     }
 
-    public IDeflector DeflectorBase { get; }
+    public int WeightCharacteristic { get; }
+
+    public IDeflector? DeflectorBase { get; }
 
     // public PhotonDeflectors PhotonDeflectors { get; }
-    public EngineBase EngineBase { get; }
-    public JumpEngines JumpEngines { get; }
+    public EngineBase? EngineBase { get; }
+    public JumpEngines? JumpEngines { get; }
     public ArmourBase ArmourBase { get; }
+    public AntiNeutronEmitter? AntiNeutronEmitter { get; }
 
-    public void GetAttack(Collection obstacles)
+    public ResultOfDamage GetAttack(ObstacleBase obstacle)
     {
-        foreach (ObstacleBase obstacle in obstacles)
+        if (obstacle is CosmoWhale && AntiNeutronEmitter is null)
         {
-            DeflectorBase.TakeDamage(obstacle);
-            ArmourBase.TakeDamage(obstacle);
+            return ResultOfDamage.SpaceShipIsDestroyed;
         }
+
+        ResultOfDamage firstStep = DeflectorBase?.TakeDamage(obstacle) ?? ResultOfDamage.Success;
+        return firstStep != ResultOfDamage.CrewDied ? ArmourBase.TakeDamage(obstacle) : firstStep;
     }
 }
 

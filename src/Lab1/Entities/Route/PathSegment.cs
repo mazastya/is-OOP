@@ -1,13 +1,15 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Route;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaceEnvironments;
 
-public abstract class PathSegment
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Route;
+
+public class PathSegment
 {
-    protected PathSegment(SpaseBase.SpaseBase spaseBase, int distanse)
+    public PathSegment(SpaceEnvironments.SpaseBase spaseBase, int distance)
     {
         Base = spaseBase;
-        Distanse = distanse;
+        Distance = distance;
     }
 
-    public int Distanse { get; }
-    public SpaseBase.SpaseBase Base { get; }
+    public int Distance { get; }
+    public SpaceEnvironments.SpaseBase Base { get; }
 }

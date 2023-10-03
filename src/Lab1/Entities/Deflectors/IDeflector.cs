@@ -1,8 +1,9 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
+﻿using Itmo.ObjectOrientedProgramming.Lab1.Models;
+using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 
 public interface IDeflector
 {
-    void TakeDamage(ObstacleBase obstacle);
+    ResultOfDamage TakeDamage(ObstacleBase obstacle);
 }

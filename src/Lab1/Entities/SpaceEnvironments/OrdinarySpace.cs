@@ -7,7 +7,7 @@ using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaseBase;
 
-public class OrdinarySpace : SpaseBase
+public class OrdinarySpace : SpaceEnvironments.SpaseBase
 {
     public OrdinarySpace(ICollection<ObstacleBase> obstacle)
         : base(obstacle)

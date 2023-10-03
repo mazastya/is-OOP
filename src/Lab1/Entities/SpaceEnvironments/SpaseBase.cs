@@ -1,15 +1,17 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
-namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaseBase;
+namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaceEnvironments;
 
-public class SpaseBase
+public abstract class SpaseBase
 {
-    private ICollection<ObstacleBase> _obstacle;
+    private IList<ObstacleBase> _obstacle;
 
-    public SpaseBase(ICollection<ObstacleBase> obstacle)
+    protected SpaseBase(ICollection<ObstacleBase> obstacle)
     {
-        _obstacle = obstacle;
+        _obstacle = obstacle.ToList();
     }
-    }
+
+    public IReadOnlyCollection<ObstacleBase> ObstacleBases => _obstacle.AsReadOnly();
+}

@@ -6,7 +6,7 @@ using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaseBase;
 
-public class NitrinoParticleNebulae : SpaseBase
+public class NitrinoParticleNebulae : SpaceEnvironments.SpaseBase
 {
     public NitrinoParticleNebulae(ICollection<ObstacleBase> obstacle)
         : base(obstacle)

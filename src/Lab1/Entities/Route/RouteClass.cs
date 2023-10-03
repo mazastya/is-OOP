@@ -10,4 +10,6 @@ public class RouteClass
     {
         _pathSegments = pathSegments;
     }
+
+    public IReadOnlyList<PathSegment> PathSegments => _pathSegments.AsReadOnly();
 }

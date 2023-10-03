@@ -16,8 +16,9 @@ public class Stella : ShipBase
         : base(
             deflectorBase: new DeflectorClass1(),
             engineBase: new ImpulseEngineClassC(),
-            jumpEngines: new JumpEngines(TypesOfJumpEngines.OmegaJumpEngine),
+            jumpEngines: new JumpEngines(TypesOfJumpEngines.OmegaJumpEngine, 500),
             armourBase: new ArmourClass1(),
+            antiNeutronEmitter: new AntiNeutronEmitter(),
             weightCharacteristic: 10)
     {
         _deflectorBase = deflectorBase;

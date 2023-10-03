@@ -18,6 +18,7 @@ public class Meredian : ShipBase
             engineBase: new ImpulseEngineClassE(),
             jumpEngines,
             armourBase: new ArmourClass2(),
+            antiNeutronEmitter: new AntiNeutronEmitter(),
             weightCharacteristic: 20)
     {
         _deflectorBase = deflectorBase;

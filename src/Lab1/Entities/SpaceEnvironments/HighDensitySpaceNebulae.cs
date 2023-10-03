@@ -6,7 +6,7 @@ using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaseBase;
 
-public class HighDensitySpaceNebulae : SpaseBase
+public class HighDensitySpaceNebulae : SpaceEnvironments.SpaseBase
 {
     public HighDensitySpaceNebulae(ICollection<ObstacleBase> obstacle)
         : base(obstacle)
