@@ -3,9 +3,9 @@ using Itmo.ObjectOrientedProgramming.Lab1.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
-public class Stat
+public class TotalStatistics
 {
-    public Stat()
+    public TotalStatistics()
     {
         Status = ResultOfDamage.None;
         FuelConsumedToJourney = 0.0;

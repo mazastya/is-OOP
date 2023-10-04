@@ -19,7 +19,7 @@ public abstract class DeflectorBase : IDeflector
     public ResultOfDamage TakeDamage(ObstacleBase obstacle)
     {
         if (obstacle is PhotoneFlash)
-            return ResultOfDamage.CrewDied;
+            return ResultOfDamage.CrewIsDead;
 
         double damage = _currentHitPointDeflector >= obstacle.Damage
             ? obstacle.Damage

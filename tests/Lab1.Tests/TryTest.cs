@@ -40,7 +40,7 @@ public class TryTest
                     armourBase: new ArmourClass3(),
                     antiNeutronEmitter: new AntiNeutronEmitter(),
                     weightCharacteristic: 50),
-                ResultOfDamage.SpaceShipIsLostBadJump,
+                ResultOfDamage.JumpEngineRangShortfall,
             },
         };
 
@@ -81,8 +81,8 @@ public class TryTest
         var pathSegment = new PathSegment(environment, 101);
         var route = new RouteClass(new List<PathSegment> { pathSegment });
 
-        Stat stat = ShipObstacleCollision.ShipObstacleCollisionMethod(shipBase, route);
-        Assert.Equal(expectedResult, stat.Status);
+        TotalStatistics totalStatistics = ShipObstacleCollision.ShipObstacleCollisionMethod(shipBase, route);
+        Assert.Equal(expectedResult, totalStatistics.Status);
     }
 
     [Theory]
@@ -94,8 +94,8 @@ public class TryTest
         var pathSegment = new PathSegment(environment, 100);
         var route = new RouteClass(new List<PathSegment> { pathSegment });
 
-        Stat stat = ShipObstacleCollision.ShipObstacleCollisionMethod(shipBase, route);
+        TotalStatistics totalStatistics = ShipObstacleCollision.ShipObstacleCollisionMethod(shipBase, route);
 
-        Assert.Equal(expectedResult, stat.CrewIsAlive);
+        Assert.Equal(expectedResult, totalStatistics.CrewIsAlive);
     }
 }

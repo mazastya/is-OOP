@@ -22,7 +22,7 @@ public class PhotonDeflectors : IDeflector
 
         if (_anountOfFlash == 0)
         {
-            return ResultOfDamage.CrewDied;
+            return ResultOfDamage.CrewIsDead;
         }
 
         _anountOfFlash--;

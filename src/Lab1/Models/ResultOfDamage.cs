@@ -3,8 +3,8 @@
 public enum ResultOfDamage
 {
         Success,
-        SpaceShipIsLostBadJump,
+        JumpEngineRangShortfall,
         SpaceShipIsDestroyed,
-        CrewDied,
+        CrewIsDead,
         None,
 }

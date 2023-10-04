@@ -8,12 +8,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
 public static class ShipObstacleCollision
 {
-    public static Stat ShipObstacleCollisionMethod(ShipBase shipBase, RouteClass routeClass)
+    public static TotalStatistics ShipObstacleCollisionMethod(ShipBase shipBase, RouteClass routeClass)
     {
         ArgumentNullException.ThrowIfNull(nameof(shipBase));
         ArgumentNullException.ThrowIfNull(nameof(routeClass));
 
-        var stat = new Stat();
+        var totalStatistics = new TotalStatistics();
         foreach (PathSegment segment in routeClass.PathSegments)
         {
             EngineBase? baseEngine = shipBase.EngineBase?.IsEngineSuitableForTheEnvironment(segment);
@@ -25,14 +25,14 @@ public static class ShipObstacleCollision
             {
                 if (jump is null)
                 {
-                    stat.Status = ResultOfDamage.SpaceShipIsDestroyed;
-                    return stat;
+                    totalStatistics.Status = ResultOfDamage.SpaceShipIsDestroyed;
+                    return totalStatistics;
                 }
 
                 if (jump.MaximumLengthOfJump < segment.Distance)
                 {
-                    stat.Status = ResultOfDamage.SpaceShipIsLostBadJump;
-                    return stat;
+                    totalStatistics.Status = ResultOfDamage.JumpEngineRangShortfall;
+                    return totalStatistics;
                 }
 
                 resultEngine = jump;
@@ -53,19 +53,19 @@ public static class ShipObstacleCollision
             // EngineBase? resultEngine = jump ?? baseEngine;
             switch (resultOfDamage)
             {
-                case ResultOfDamage.CrewDied:
-                    stat.CrewIsAlive = false;
-                    return stat;
+                case ResultOfDamage.CrewIsDead:
+                    totalStatistics.CrewIsAlive = false;
+                    return totalStatistics;
                 case ResultOfDamage.SpaceShipIsDestroyed:
-                    stat.Status = resultOfDamage;
-                    return stat;
+                    totalStatistics.Status = resultOfDamage;
+                    return totalStatistics;
                 case ResultOfDamage.Success:
-                    stat.FuelConsumedToJourney +=
+                    totalStatistics.FuelConsumedToJourney +=
                         resultEngine.HowMuchFuelIsSpentOnTheJourney(segment.Distance, shipBase.WeightCharacteristic);
                     break;
             }
         }
 
-        return stat;
+        return totalStatistics;
     }
 }

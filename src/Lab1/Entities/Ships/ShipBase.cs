@@ -43,7 +43,7 @@ public abstract class ShipBase
         }
 
         ResultOfDamage firstStep = DeflectorBase?.TakeDamage(obstacle) ?? ResultOfDamage.Success;
-        return firstStep != ResultOfDamage.CrewDied ? ArmourBase.TakeDamage(obstacle) : firstStep;
+        return firstStep != ResultOfDamage.CrewIsDead ? ArmourBase.TakeDamage(obstacle) : firstStep;
     }
 }
 
