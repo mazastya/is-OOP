@@ -98,7 +98,7 @@ public class AllNecessaryTests
 
     [Theory]
     [MemberData(nameof(DataForTest1))]
-    public void TestOne(ShipBase shipBase, ResultOfDamage expectedResult)
+    public void TestOneISHighDensityTestShuttleAndAugur(ShipBase shipBase, ResultOfDamage expectedResult)
     {
         // Arange
         var obstacles = new List<ObstacleBase>();
@@ -115,7 +115,7 @@ public class AllNecessaryTests
 
     [Theory]
     [MemberData(nameof(DataForTest2))]
-    public void TestTwo(ShipBase shipBase, bool expectedResult)
+    public void TestTwoISAThreeShipDeathCheck(ShipBase shipBase, bool expectedResult)
     {
         // Arrange
         var obstacles = new List<ObstacleBase>() { new PhotoneFlash() };
@@ -132,7 +132,7 @@ public class AllNecessaryTests
 
     [Theory]
     [MemberData(nameof(DataForTest3))]
-    public void TestThree(ShipBase shipBase, ResultOfDamage expectedResult)
+    public void TestThreeISCheckingTheCostOfShuttleAndVacklasFlights(ShipBase shipBase, ResultOfDamage expectedResult)
     {
         // Arrange
         var obstacles = new List<ObstacleBase>() { new CosmoWhale() };
@@ -148,7 +148,7 @@ public class AllNecessaryTests
     }
 
     [Fact]
-    public void TestFour()
+    public void TestFourISOrdinaryNebulaeTestShuttleAndVacklas()
     {
         // Arrange
         var walkingShuttle = new WalkingShuttle();
@@ -162,45 +162,41 @@ public class AllNecessaryTests
         var route = new RouteClass(new[] { segment });
 
         // Act
-        TotalStatistics totalStatistics1 = ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
-        TotalStatistics totalStatistics2 = ShipObstacleCollision.ShipObstacleCollisionMethod(vaсklas, route);
+        TotalStatistics totalStatisticsShuttle = ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
+        TotalStatistics totalStatisticsVacklas = ShipObstacleCollision.ShipObstacleCollisionMethod(vaсklas, route);
 
         // Assert
-        Assert.Equal(totalStatistics2, totalStatistics2);
-        Assert.Equal(totalStatistics1, totalStatistics1);
+        Assert.True(totalStatisticsShuttle.FuelConsumedToJourney < totalStatisticsVacklas.FuelConsumedToJourney);
     }
 
     [Fact]
-    public void TestFive()
+    public void TestFiveISStellaAndAugurRangeJumpTest()
     {
         // Arrange
         var augur = new Augur();
         var stella = new Stella();
 
-        // var ships = new List<ShipBase> { augur, stella };
         var obstacles = new List<ObstacleBase>();
         var environment = new HighDensitySpaceNebulae(obstacles);
-        var segment = new PathSegment(environment, 1000);
+        var segment = new PathSegment(environment, 5000);
 
         var route = new RouteClass(new[] { segment });
 
         // Act
-        TotalStatistics totalStatistics1 = ShipObstacleCollision.ShipObstacleCollisionMethod(augur, route);
-        TotalStatistics totalStatistics2 = ShipObstacleCollision.ShipObstacleCollisionMethod(stella, route);
+        TotalStatistics totalStatisticsAugur = ShipObstacleCollision.ShipObstacleCollisionMethod(augur, route);
+        TotalStatistics totalStatisticsStella = ShipObstacleCollision.ShipObstacleCollisionMethod(stella, route);
 
         // Assert
-        Assert.Equal(totalStatistics2, totalStatistics2);
-        Assert.Equal(totalStatistics1, totalStatistics1);
+        Assert.False(totalStatisticsStella.FuelConsumedToJourney < totalStatisticsAugur.FuelConsumedToJourney);
     }
 
     [Fact]
-    public void TestSix()
+    public void TestSixISNitrinoParticlesTestShuttleAndVacklas()
     {
         // Arrange
         var walkingShuttle = new WalkingShuttle();
         var vaсklas = new Vaсklas(deflectorBase: new DeflectorClass1());
 
-        // var ships = new List<ShipBase> { augur, stella };
         var obstacles = new List<ObstacleBase>();
         var environment = new NitrinoParticleNebulae(obstacles);
         var segment = new PathSegment(environment, 1000);
@@ -208,17 +204,16 @@ public class AllNecessaryTests
         var route = new RouteClass(new[] { segment });
 
         // Act
-        TotalStatistics totalStatistics1 = ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
-        TotalStatistics totalStatistics2 = ShipObstacleCollision.ShipObstacleCollisionMethod(vaсklas, route);
+        TotalStatistics totalStatisticShuttle = ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
+        TotalStatistics totalStatisticsVacklas = ShipObstacleCollision.ShipObstacleCollisionMethod(vaсklas, route);
 
         // Assert
-        Assert.Equal(totalStatistics2, totalStatistics2);
-        Assert.Equal(totalStatistics1, totalStatistics1);
+        Assert.True(totalStatisticsVacklas.FuelConsumedToJourney > totalStatisticShuttle.FuelConsumedToJourney);
     }
 
     [Theory]
     [MemberData(nameof(DataForTest7))]
-    public void TestSeven(ShipBase shipBase, bool expectedResult)
+    public void TestSevenISTheTeamSurvivesWithAPhotonDeflector(ShipBase shipBase, bool expectedResult)
     {
         // Arrange
         var obstacles = new List<ObstacleBase>() { new PhotoneFlash() };
