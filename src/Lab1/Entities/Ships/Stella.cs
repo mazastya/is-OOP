@@ -6,25 +6,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab1;
 
 public class Stella : ShipBase
 {
-    private readonly IDeflector _deflectorBase;
-    private readonly EngineBase _engineBase;
-    private readonly JumpEngines _jumpEngines;
-    private readonly ArmourBase _armourBase;
-    private readonly int _weightCharacteristic;
-
-    public Stella(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
+    public Stella()
         : base(
-            deflectorBase: new DeflectorClass1(),
-            engineBase: new ImpulseEngineClassC(),
-            jumpEngines: new JumpEngines(TypesOfJumpEngines.OmegaJumpEngine, 500),
-            armourBase: new ArmourClass1(),
-            antiNeutronEmitter: new AntiNeutronEmitter(),
-            weightCharacteristic: 10)
+            new DeflectorClass1(),
+            new ImpulseEngineClassC(),
+            new JumpEngines(TypesOfJumpEngines.OmegaJumpEngine, 500),
+            new ArmourClass1(),
+            new AntiNeutronEmitter(),
+            10)
     {
-        _deflectorBase = deflectorBase;
-        _engineBase = engineBase;
-        _jumpEngines = jumpEngines;
-        _armourBase = armourBase;
-        _weightCharacteristic = weightCharacteristic;
     }
 }

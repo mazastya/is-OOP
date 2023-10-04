@@ -6,25 +6,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab1;
 
 public class Meredian : ShipBase
 {
-    private readonly IDeflector _deflectorBase;
-    private readonly EngineBase _engineBase;
-    private readonly JumpEngines _jumpEngines;
-    private readonly ArmourBase _armourBase;
-    private readonly int _weightCharacteristic;
-
-    public Meredian(IDeflector deflectorBase, EngineBase engineBase, JumpEngines jumpEngines, ArmourBase armourBase, int weightCharacteristic)
+    public Meredian()
         : base(
-            deflectorBase: new PhotonDeflectors(new DeflectorClass2()),
-            engineBase: new ImpulseEngineClassE(),
-            jumpEngines,
-            armourBase: new ArmourClass2(),
-            antiNeutronEmitter: new AntiNeutronEmitter(),
-            weightCharacteristic: 20)
+            new PhotonDeflectors(new DeflectorClass2()),
+            new ImpulseEngineClassE(),
+            null,
+            new ArmourClass2(),
+            new AntiNeutronEmitter(),
+            20)
     {
-        _deflectorBase = deflectorBase;
-        _engineBase = engineBase;
-        _jumpEngines = jumpEngines;
-        _armourBase = armourBase;
-        _weightCharacteristic = weightCharacteristic;
     }
 }
