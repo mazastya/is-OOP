@@ -4,12 +4,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Obstacle;
 
 public class Asteroid : ObstacleBase
 {
-    // public Asteroid(int damage)
-    // {
-    //     Damage = damage;
-    // }
+    private const int ObstacleDamage = 50;
     public Asteroid()
-        : base(50)
+        : base(ObstacleDamage)
     {
     }
 }

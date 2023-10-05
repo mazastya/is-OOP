@@ -4,9 +4,9 @@ using Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1;
 
-public class Vaсklas : ShipBase
+public class Vacklas : ShipBase
 {
-    public Vaсklas(IDeflector deflectorBase)
+    public Vacklas(IDeflector deflectorBase)
         : base(
             deflectorBase: deflectorBase,
             new ImpulseEngineClassE(),

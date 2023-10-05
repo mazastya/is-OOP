@@ -43,7 +43,7 @@ public class JumpEngines : EngineBase
             }
 
             default:
-                return 100; // типа кода ошибки
+                return 100;
         }
     }
 

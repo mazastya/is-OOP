@@ -4,8 +4,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacle;
 
 public class CosmoWhale : ObstacleBase
 {
+    private const int ObstacleDamage = 1000;
     public CosmoWhale()
-        : base(1000)
+        : base(ObstacleDamage)
     {
     }
 }

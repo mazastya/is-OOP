@@ -26,7 +26,7 @@ public class PhotonDeflectors : IDeflector
         }
 
         _anountOfFlash--;
-        obstacle.TakeDamage(3000);
+        obstacle.TakeDamage(1000);
         return ResultOfDamage.Success;
     }
 }

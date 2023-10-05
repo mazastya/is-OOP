@@ -39,13 +39,13 @@ public class AllNecessaryTests
         {
             new object[]
             {
-                new Vaсklas(deflectorBase: new DeflectorClass1()),
+                new Vacklas(deflectorBase: new DeflectorClass1()),
                 false,
             },
 
             new object[]
             {
-                new Vaсklas(deflectorBase: new PhotonDeflectors(new DeflectorClass1())),
+                new Vacklas(deflectorBase: new PhotonDeflectors(new DeflectorClass1())),
                 true,
             },
         };
@@ -56,7 +56,7 @@ public class AllNecessaryTests
         {
             new object[]
             {
-                new Vaсklas(deflectorBase: new DeflectorClass1()),
+                new Vacklas(deflectorBase: new DeflectorClass1()),
                 ResultOfDamage.SpaceShipIsDestroyed,
             },
 
@@ -79,13 +79,13 @@ public class AllNecessaryTests
         {
             new object[]
             {
-                new Vaсklas(deflectorBase: new DeflectorClass1()),
+                new Vacklas(deflectorBase: new DeflectorClass1()),
                 false,
             },
 
             new object[]
             {
-                new Vaсklas(deflectorBase: new PhotonDeflectors(new DeflectorClass1())),
+                new Vacklas(deflectorBase: new PhotonDeflectors(new DeflectorClass1())),
                 true,
             },
 
@@ -98,7 +98,7 @@ public class AllNecessaryTests
 
     [Theory]
     [MemberData(nameof(DataForTest1))]
-    public void TestOneISHighDensityTestShuttleAndAugur(ShipBase shipBase, ResultOfDamage expectedResult)
+    public void TestOneISHighDensityTestShuttleAndAugurth(ShipBase shipBase, ResultOfDamage expectedResult)
     {
         // Arange
         var obstacles = new List<ObstacleBase>();
@@ -152,7 +152,7 @@ public class AllNecessaryTests
     {
         // Arrange
         var walkingShuttle = new WalkingShuttle();
-        var vaсklas = new Vaсklas(deflectorBase: new DeflectorClass1());
+        var vaсklas = new Vacklas(deflectorBase: new DeflectorClass1());
 
         // var ships = new List<ShipBase> { augur, stella };
         var obstacles = new List<ObstacleBase>();
@@ -195,7 +195,7 @@ public class AllNecessaryTests
     {
         // Arrange
         var walkingShuttle = new WalkingShuttle();
-        var vaсklas = new Vaсklas(deflectorBase: new DeflectorClass1());
+        var vaсklas = new Vacklas(deflectorBase: new DeflectorClass1());
 
         var obstacles = new List<ObstacleBase>();
         var environment = new NitrinoParticleNebulae(obstacles);

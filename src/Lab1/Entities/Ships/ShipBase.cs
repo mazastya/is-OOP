@@ -13,14 +13,19 @@ namespace Itmo.ObjectOrientedProgramming.Lab1;
 
 public abstract class ShipBase
 {
-    protected ShipBase(IDeflector? deflectorBase, EngineBase? engineBase, JumpEngines? jumpEngines, ArmourBase armourBase, AntiNeutronEmitter? antiNeutronEmitter, int weightCharacteristic)
+    protected ShipBase(
+        IDeflector? deflectorBase,
+        EngineBase? engineBase,
+        JumpEngines? jumpEngines,
+        ArmourBase armourBase,
+        AntiNeutronEmitter? antiNeutronEmitter,
+        int weightCharacteristic)
     {
         WeightCharacteristic = weightCharacteristic;
         DeflectorBase = deflectorBase;
         ArmourBase = armourBase;
         AntiNeutronEmitter = antiNeutronEmitter;
 
-        // if (engineBase is null and jumpEngines is null)
         EngineBase = engineBase;
         JumpEngines = jumpEngines;
     }
@@ -29,7 +34,6 @@ public abstract class ShipBase
 
     public IDeflector? DeflectorBase { get; }
 
-    // public PhotonDeflectors PhotonDeflectors { get; }
     public EngineBase? EngineBase { get; }
     public JumpEngines? JumpEngines { get; }
     public ArmourBase ArmourBase { get; }
@@ -46,8 +50,3 @@ public abstract class ShipBase
         return firstStep != ResultOfDamage.CrewIsDead ? ArmourBase.TakeDamage(obstacle) : firstStep;
     }
 }
-
-/*
- * var engine1 = new Engine1()
- * var ship = new Ship(engine1)
- */

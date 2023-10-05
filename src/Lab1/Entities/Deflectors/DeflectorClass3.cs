@@ -2,8 +2,9 @@
 
 public class DeflectorClass3 : DeflectorBase
 {
+    private const int HitPointFromDeflector = 400;
     public DeflectorClass3()
-        : base(400)
+        : base(HitPointFromDeflector)
     {
     }
 }

@@ -4,8 +4,9 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Models.Obstacle;
 
 public class PhotoneFlash : ObstacleBase
 {
+    private const int ObstacleDamage = 300;
     public PhotoneFlash()
-        : base(3000)
+        : base(ObstacleDamage)
     {
     }
 }

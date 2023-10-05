@@ -14,11 +14,4 @@ public abstract class EngineBase
     {
         return pathSegment.Base is HighDensitySpaceNebulae ? null : this;
     }
-
-    // public Result IsPossibleToTravel(double wayLength, PathSegment pathSegment)
-    // {
-    //     if (pathSegment.Base is not NitrinoParticleNebulae)
-    //         return Result.SpaceShipLostUnsuitableBiome;
-    //     return wayLength <= MaximumLengthOfJump ? ResultOfFly.Success : ResultOfFly.SpaseShipLostBadJump;
-    // }
 }

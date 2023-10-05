@@ -6,7 +6,7 @@ using Itmo.ObjectOrientedProgramming.Lab1.Obstacle;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
-public static class ShipObstacleCollision
+public abstract class ShipObstacleCollision
 {
     public static TotalStatistics ShipObstacleCollisionMethod(ShipBase shipBase, RouteClass routeClass)
     {
@@ -50,7 +50,6 @@ public static class ShipObstacleCollision
                     break;
             }
 
-            // EngineBase? resultEngine = jump ?? baseEngine;
             switch (resultOfDamage)
             {
                 case ResultOfDamage.CrewIsDead:
