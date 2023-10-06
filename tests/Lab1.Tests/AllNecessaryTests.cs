@@ -162,7 +162,8 @@ public class AllNecessaryTests
         var route = new RouteClass(new[] { segment });
 
         // Act
-        TotalStatistics totalStatisticsShuttle = ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
+        TotalStatistics totalStatisticsShuttle =
+            ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
         TotalStatistics totalStatisticsVacklas = ShipObstacleCollision.ShipObstacleCollisionMethod(vaсklas, route);
 
         // Assert
@@ -176,6 +177,8 @@ public class AllNecessaryTests
         var augur = new Augur();
         var stella = new Stella();
 
+        var ships = new List<ShipBase> { augur, stella };
+
         var obstacles = new List<ObstacleBase>();
         var environment = new HighDensitySpaceNebulae(obstacles);
         var segment = new PathSegment(environment, 5000);
@@ -185,9 +188,11 @@ public class AllNecessaryTests
         // Act
         TotalStatistics totalStatisticsAugur = ShipObstacleCollision.ShipObstacleCollisionMethod(augur, route);
         TotalStatistics totalStatisticsStella = ShipObstacleCollision.ShipObstacleCollisionMethod(stella, route);
+        ShipBase? optimalShip = ShipObstacleCollision.FindBestShipForRoute(ships, route);
 
         // Assert
         Assert.False(totalStatisticsStella.FuelConsumedToJourney < totalStatisticsAugur.FuelConsumedToJourney);
+        Assert.Equal(stella, optimalShip);
     }
 
     [Fact]
@@ -195,7 +200,9 @@ public class AllNecessaryTests
     {
         // Arrange
         var walkingShuttle = new WalkingShuttle();
-        var vaсklas = new Vacklas(deflectorBase: new DeflectorClass1());
+        var vacklas = new Vacklas(deflectorBase: new DeflectorClass1());
+
+        var ships = new List<ShipBase> { walkingShuttle, vacklas };
 
         var obstacles = new List<ObstacleBase>();
         var environment = new NitrinoParticleNebulae(obstacles);
@@ -204,11 +211,14 @@ public class AllNecessaryTests
         var route = new RouteClass(new[] { segment });
 
         // Act
-        TotalStatistics totalStatisticShuttle = ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
-        TotalStatistics totalStatisticsVacklas = ShipObstacleCollision.ShipObstacleCollisionMethod(vaсklas, route);
+        TotalStatistics totalStatisticShuttle =
+            ShipObstacleCollision.ShipObstacleCollisionMethod(walkingShuttle, route);
+        TotalStatistics totalStatisticsVacklas = ShipObstacleCollision.ShipObstacleCollisionMethod(vacklas, route);
+        ShipBase? optimalShip = ShipObstacleCollision.FindBestShipForRoute(ships, route);
 
         // Assert
         Assert.True(totalStatisticsVacklas.FuelConsumedToJourney > totalStatisticShuttle.FuelConsumedToJourney);
+        Assert.Equal(walkingShuttle, optimalShip);
     }
 
     [Theory]

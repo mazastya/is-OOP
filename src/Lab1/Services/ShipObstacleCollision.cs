@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Engines;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.Route;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
@@ -8,6 +9,24 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Services;
 
 public abstract class ShipObstacleCollision
 {
+    public static ShipBase? FindBestShipForRoute(IEnumerable<ShipBase> ships, RouteClass routeClass)
+    {
+        double minFuelConsumed = double.MaxValue;
+        ShipBase? bestShip = null;
+        foreach (ShipBase ship in ships)
+        {
+            TotalStatistics stat = ShipObstacleCollisionMethod(ship, routeClass);
+
+            if (minFuelConsumed >= stat.FuelConsumedToJourney)
+            {
+                bestShip = ship;
+                minFuelConsumed = stat.FuelConsumedToJourney;
+            }
+        }
+
+        return bestShip;
+    }
+
     public static TotalStatistics ShipObstacleCollisionMethod(ShipBase shipBase, RouteClass routeClass)
     {
         ArgumentNullException.ThrowIfNull(nameof(shipBase));
