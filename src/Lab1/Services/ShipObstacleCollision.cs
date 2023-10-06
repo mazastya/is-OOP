@@ -11,6 +11,9 @@ public abstract class ShipObstacleCollision
 {
     public static ShipBase? FindBestShipForRoute(IEnumerable<ShipBase> ships, RouteClass routeClass)
     {
+        ArgumentNullException.ThrowIfNull(nameof(ships));
+        ArgumentNullException.ThrowIfNull(nameof(routeClass));
+
         double minFuelConsumed = double.MaxValue;
         ShipBase? bestShip = null;
         foreach (ShipBase ship in ships)

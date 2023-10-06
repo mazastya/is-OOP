@@ -10,6 +10,11 @@ public abstract class ArmourBase
 
     protected ArmourBase(int num)
     {
+        if (num < 0)
+        {
+            throw new ArgumentException("Negative value is not possible", nameof(num));
+        }
+
         _currentHitPointDeflector = num;
     }
 

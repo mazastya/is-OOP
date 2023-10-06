@@ -8,6 +8,11 @@ public abstract class ObstacleBase
     protected ObstacleBase(double damageFromObstacle)
     {
         ArgumentNullException.ThrowIfNull(nameof(damageFromObstacle));
+        if (damageFromObstacle < 0)
+        {
+            throw new ArgumentException("Negative value is not possible", nameof(damageFromObstacle));
+        }
+
         Damage = damageFromObstacle;
     }
 

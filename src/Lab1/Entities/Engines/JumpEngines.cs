@@ -20,26 +20,33 @@ public class JumpEngines : EngineBase
 
     public override JumpEngines? IsEngineSuitableForTheEnvironment(PathSegment pathSegment)
     {
+        ArgumentNullException.ThrowIfNull(nameof(pathSegment));
         return (pathSegment.Base is HighDensitySpaceNebulae) ? this : null;
     }
 
     public override double HowMuchFuelIsSpentOnTheJourney(double pathLenght, int weightCharacteristic)
     {
+        ArgumentNullException.ThrowIfNull(nameof(pathLenght));
+        ArgumentNullException.ThrowIfNull(nameof(weightCharacteristic));
+
         switch (TypeOfJumpEngines)
         {
             case TypesOfJumpEngines.AlphaJumpEngine:
             {
-                return (GetTimeToTravel(pathLenght, weightCharacteristic) * _fuelConsumedPerHour) * weightCharacteristic;
+                return (GetTimeToTravel(pathLenght, weightCharacteristic) * _fuelConsumedPerHour) *
+                       weightCharacteristic;
             }
 
             case TypesOfJumpEngines.GammaJumpEngine:
             {
-                return (GetTimeToTravel(pathLenght, weightCharacteristic) * _fuelConsumedPerHour * _fuelConsumedPerHour) * weightCharacteristic;
+                return (GetTimeToTravel(pathLenght, weightCharacteristic) * _fuelConsumedPerHour *
+                        _fuelConsumedPerHour) * weightCharacteristic;
             }
 
             case TypesOfJumpEngines.OmegaJumpEngine:
             {
-                return (GetTimeToTravel(pathLenght, weightCharacteristic) * _fuelConsumedPerHour * Math.Log(_fuelConsumedPerHour)) * weightCharacteristic;
+                return (GetTimeToTravel(pathLenght, weightCharacteristic) * _fuelConsumedPerHour *
+                        Math.Log(_fuelConsumedPerHour)) * weightCharacteristic;
             }
 
             default:

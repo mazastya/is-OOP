@@ -10,8 +10,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Deflectors;
 public abstract class DeflectorBase : IDeflector
 {
     private double _currentHitPointDeflector;
+
     protected DeflectorBase(int hitPointFromDeflector)
     {
+        if (hitPointFromDeflector < 0)
+        {
+            throw new ArgumentException("Negative value is not possible", nameof(hitPointFromDeflector));
+        }
+
         ArgumentNullException.ThrowIfNull(nameof(hitPointFromDeflector));
         _currentHitPointDeflector = hitPointFromDeflector;
     }

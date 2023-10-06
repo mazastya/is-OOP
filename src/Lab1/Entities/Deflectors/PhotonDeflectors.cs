@@ -12,11 +12,14 @@ public class PhotonDeflectors : IDeflector
 
     public PhotonDeflectors(DeflectorBase deflectorBase)
     {
+        ArgumentNullException.ThrowIfNull(nameof(deflectorBase));
         _deflectorBase = deflectorBase;
     }
 
     public ResultOfDamage TakeDamage(ObstacleBase obstacle)
     {
+        ArgumentNullException.ThrowIfNull(nameof(obstacle));
+
         if (obstacle is not PhotoneFlash)
             return _deflectorBase.TakeDamage(obstacle);
 
