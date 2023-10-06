@@ -43,7 +43,7 @@ public class JumpEngines : EngineBase
             }
 
             default:
-                return 100;
+                throw new ArgumentOutOfRangeException(nameof(pathLenght));
         }
     }
 
