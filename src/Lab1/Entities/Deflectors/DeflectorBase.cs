@@ -12,11 +12,14 @@ public abstract class DeflectorBase : IDeflector
     private double _currentHitPointDeflector;
     protected DeflectorBase(int hitPointFromDeflector)
     {
+        ArgumentNullException.ThrowIfNull(nameof(hitPointFromDeflector));
         _currentHitPointDeflector = hitPointFromDeflector;
     }
 
     public ResultOfDamage TakeDamage(ObstacleBase obstacle)
     {
+        ArgumentNullException.ThrowIfNull(nameof(obstacle));
+
         if (obstacle is PhotoneFlash)
             return ResultOfDamage.CrewIsDead;
 

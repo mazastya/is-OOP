@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Itmo.ObjectOrientedProgramming.Lab1.Entities.Route;
 
@@ -8,6 +9,7 @@ public class RouteClass
 
     public RouteClass(IList<PathSegment> pathSegments)
     {
+        ArgumentNullException.ThrowIfNull(nameof(pathSegments));
         _pathSegments = pathSegments;
     }
 

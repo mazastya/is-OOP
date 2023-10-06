@@ -1,4 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab1.Entities.Route;
+﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab1.Entities.Route;
 using Itmo.ObjectOrientedProgramming.Lab1.Entities.SpaseBase;
 using Itmo.ObjectOrientedProgramming.Lab1.Models;
 
@@ -12,6 +13,7 @@ public abstract class EngineBase
 
     public virtual EngineBase? IsEngineSuitableForTheEnvironment(PathSegment pathSegment)
     {
+        ArgumentNullException.ThrowIfNull(nameof(pathSegment));
         return pathSegment.Base is HighDensitySpaceNebulae ? null : this;
     }
 }

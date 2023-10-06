@@ -41,6 +41,7 @@ public abstract class ShipBase
 
     public ResultOfDamage GetAttack(ObstacleBase obstacle)
     {
+        ArgumentNullException.ThrowIfNull(nameof(obstacle));
         if (obstacle is CosmoWhale && AntiNeutronEmitter is null)
         {
             return ResultOfDamage.SpaceShipIsDestroyed;
