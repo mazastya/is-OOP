@@ -21,14 +21,14 @@ public class Motherboard
         int amountOfPcie,
         int amountOfSata,
         int tablesOfRam,
-        TypeOfFormFactor formFactor,
+        TypeOfFormFactorMotherboard formFactorMotherboard,
         TypeAndVersionBIOS pairTypeAndVersionBios)
     {
         Name = name;
         AmountOfPcie = amountOfPcie;
         AmountOfSata = amountOfSata;
         TablesOfRam = tablesOfRam;
-        TypeOfFormFactor = formFactor;
+        TypeOfFormFactorMotherboard = formFactorMotherboard;
         Pair = pairTypeAndVersionBios;
 
         // BiosTuple = bios;
@@ -45,7 +45,7 @@ public class Motherboard
     // поддерживаемый стандарт DDR
     public int TablesOfRam { get; } // кол-во столов под ОЗУ
 
-    public TypeOfFormFactor TypeOfFormFactor { get; } // форм-фактор
+    public TypeOfFormFactorMotherboard TypeOfFormFactorMotherboard { get; } // форм-фактор
 
     // public Tuple<string, int> BiosTuple { get; } // BIOS (тип и версия)
     public TypeAndVersionBIOS Pair { get; } // BIOS (тип и версия)

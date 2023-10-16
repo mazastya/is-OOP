@@ -1,6 +1,6 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab2.Models;
 
-public enum TypeOfFormFactor
+public enum TypeOfFormFactorMotherboard
 {
     Atx,
     MicroAtx,
