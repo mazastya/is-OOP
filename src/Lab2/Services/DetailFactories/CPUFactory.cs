@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
-namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
+namespace Itmo.ObjectOrientedProgramming.Lab2.Services.DetailFactories;
 
 public class CpuFactory : IFactory<Cpu>
 {
@@ -17,6 +17,7 @@ public class CpuFactory : IFactory<Cpu>
 
     public Cpu? CreateComponentByName(string name)
     {
-        return _cpuList.FirstOrDefault(cpu => cpu.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        Cpu? cpuElement = _cpuList.FirstOrDefault(cpu => cpu.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+        return cpuElement ?? throw new ArgumentNullException("This component is not on the parts list.", nameof(cpuElement));
     }
 }

@@ -4,10 +4,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class ProcessorCoolingSystem
 {
-    public ProcessorCoolingSystem(int tdp)
+    public ProcessorCoolingSystem(string name, int tdp)
     {
+        Name = name;
         Tdp = tdp;
     }
+
+    public string Name { get; } // имя
 
     // габариты
     // поддерживаемые сокеты

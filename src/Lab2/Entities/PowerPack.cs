@@ -6,10 +6,14 @@
 
 public class PowerPack
 {
-    public PowerPack(int peakLoad)
+    public PowerPack(
+        string name,
+        int peakLoad)
     {
+        Name = name;
         PeakLoad = peakLoad;
     }
 
-    public int PeakLoad { get; }
+    public string Name { get; } // имя
+    public int PeakLoad { get; } // пиковая нагрузка в ваттах
 }
