@@ -2,12 +2,12 @@
 
 public class TypeAndVersionBIOS
 {
-    public TypeAndVersionBIOS(string typeBios, double versionBios)
+    public TypeAndVersionBIOS(string typeBios, int versionBios)
     {
         TypeBios = typeBios;
         VersionBios = versionBios;
     }
 
     public string TypeBios { get; }
-    public double VersionBios { get; }
+    public int VersionBios { get; }
 }

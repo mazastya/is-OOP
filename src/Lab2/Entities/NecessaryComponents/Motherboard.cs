@@ -18,15 +18,19 @@ public class Motherboard
 {
     public Motherboard(
         string name,
+        string socket,
         int amountOfPcie,
         int amountOfSata,
+        int supportedStandartOfDdr,
         int tablesOfRam,
         TypeOfFormFactorMotherboard formFactorMotherboard,
         TypeAndVersionBIOS pairTypeAndVersionBios)
     {
         Name = name;
+        Socket = socket;
         AmountOfPcie = amountOfPcie;
         AmountOfSata = amountOfSata;
+        SupportedStandartOfDdr = supportedStandartOfDdr;
         TablesOfRam = tablesOfRam;
         TypeOfFormFactorMotherboard = formFactorMotherboard;
         Pair = pairTypeAndVersionBios;
@@ -36,13 +40,12 @@ public class Motherboard
 
     public string Name { get; } // имя
 
-    // сокет
+    public string Socket { get; } // сокет
     public int AmountOfPcie { get; } // кол-во распаянных на плате PCI-E линий
     public int AmountOfSata { get; } // кол-во распаянных на плате SATA портов
 
     // чипсет
-
-    // поддерживаемый стандарт DDR
+    public int SupportedStandartOfDdr { get; } // поддерживаемый стандарт DDR
     public int TablesOfRam { get; } // кол-во столов под ОЗУ
 
     public TypeOfFormFactorMotherboard TypeOfFormFactorMotherboard { get; } // форм-фактор

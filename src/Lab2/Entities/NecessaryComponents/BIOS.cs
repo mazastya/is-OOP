@@ -11,7 +11,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 public class Bios
 {
-    public Bios(string name, string type, string version, IList<Cpu> listOfSupportedProcessors)
+    public Bios(string name, string type, int version, IList<Cpu> listOfSupportedProcessors)
     {
         Name = name;
         Type = type;
@@ -21,6 +21,6 @@ public class Bios
 
     public string Name { get; } // имя
     public string Type { get; } // тип
-    public string Version { get; } // версия
+    public int Version { get; } // версия
     private IList<Cpu> ListOfSupportedProcessors { get; } // список поддерживаемых процессоров
 }

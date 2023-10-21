@@ -1,4 +1,6 @@
-﻿namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
+﻿using System.Collections.Generic;
+
+namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 /*
  - Частота ядер
@@ -16,14 +18,18 @@ public class Cpu
         string name,
         double clockRateOfCores,
         int numberOfCores,
+        string socket,
         bool integratedVideoCore,
+        IList<string> listOfSupportedRFrequenciesRam,
         int tdp,
         int powerConsumption)
     {
         Name = name;
         ClockRateOfCores = clockRateOfCores;
         NumberOfCores = numberOfCores;
+        Socket = socket;
         IntegratedVideoCore = integratedVideoCore;
+        ListOfSupportedRFrequenciesRam = listOfSupportedRFrequenciesRam;
         Tdp = tdp;
         PowerConsumption = powerConsumption;
     }
@@ -32,10 +38,10 @@ public class Cpu
     public double ClockRateOfCores { get; } // частота ядер (тактовая)
     public int NumberOfCores { get; } // кол-во ядер
 
-    // сокет
+    public string Socket { get; } // сокет
     public bool IntegratedVideoCore { get; } // наличие встроенного видеоядра
 
-    // поддерживаемые частоты памяти
+    public IList<string> ListOfSupportedRFrequenciesRam { get; } // поддерживаемые частоты памяти
     public int Tdp { get; } // тепловыделение
     public int PowerConsumption { get; } // потребляемая мощность
 }

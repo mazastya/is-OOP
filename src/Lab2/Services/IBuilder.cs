@@ -2,15 +2,16 @@ using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
-public interface IBuilder
+public interface IBuilder<T>
 {
-    IBuilder ComputerMotherboardBuilder(string motherboardName);
-    IBuilder ComputerCorpusBuilder(string corpusName);
-    IBuilder ComputerCpuBuilder(string cpuName);
-    IBuilder ComputerBiosBuilder(string biosName);
-    IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
-    IBuilder ComputerRamBuilder(string ramName);
-    IBuilder ComputerPowerPackBuilder(string powerPackName);
+    IBuilder<T> ComputerMotherboardBuilder(string motherboardName);
+    IBuilder<T> ComputerCorpusBuilder(string corpusName);
+    IBuilder<T> ComputerCpuBuilder(string cpuName);
 
-    Computer BuildComputer();
+    IBuilder<T> ComputerBiosBuilder(string biosName);
+    IBuilder<T> ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
+    IBuilder<T> ComputerRamBuilder(string ramName);
+    IBuilder<T> ComputerPowerPackBuilder(string powerPackName);
+
+    Computer? BuildComputer();
 }

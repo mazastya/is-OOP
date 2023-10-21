@@ -1,50 +1,28 @@
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.Services.MessageForUser;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
-public class ComputerBuilder : IBuilder
+public abstract class ComputerBuilder<T> : IBuilder<T> // convenience builder???
 {
-    public ComputerBuilder()
-    {
-    }
+    public Motherboard? Motherboard { get; set; }
+    public Corpus? Corpus { get; set; }
+    public Cpu? Cpu { get; set; }
 
-    public IBuilder ComputerMotherboardBuilder(string motherboardName)
-    {
-        throw new System.NotImplementedException();
-    }
+    public Bios? Bios { get; set; }
+    public ProcessorCoolingSystem? ProcessorCoolingSystem { get; set; }
+    public Ram? Ram { get; set; }
+    public PowerPack? PowerPack { get; set; }
 
-    public IBuilder ComputerCorpusBuilder(string corpusName)
-    {
-        throw new System.NotImplementedException();
-    }
+    public BuilderResult BuilderResult { get; set; } = new BuilderResult();
 
-    public IBuilder ComputerCpuBuilder(string cpuName)
-    {
-        throw new System.NotImplementedException();
-    }
+    public abstract IBuilder<T> ComputerMotherboardBuilder(string motherboardName);
+    public abstract IBuilder<T> ComputerCorpusBuilder(string corpusName);
+    public abstract IBuilder<T> ComputerCpuBuilder(string cpuName);
 
-    public IBuilder ComputerBiosBuilder(string biosName)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public IBuilder ComputerRamBuilder(string ramName)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public IBuilder ComputerPowerPackBuilder(string powerPackName)
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public Computer BuildComputer()
-    {
-        throw new System.NotImplementedException();
-    }
+    public abstract IBuilder<T> ComputerBiosBuilder(string biosName);
+    public abstract IBuilder<T> ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
+    public abstract IBuilder<T> ComputerRamBuilder(string ramName);
+    public abstract IBuilder<T> ComputerPowerPackBuilder(string powerPackName);
+    public abstract Computer? BuildComputer();
 }
