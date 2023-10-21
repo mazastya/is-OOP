@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Models;
@@ -105,6 +106,11 @@ public class Test
             type: "BIOS",
             version: 4,
             listOfSupportedProcessors: cpuList));
+        biosList.Add(new Bios(
+            name: "BIOS2",
+            type: "BIOS",
+            version: 3,
+            listOfSupportedProcessors: cpuList));
 
         var biosFactory = new BiosFactory(biosList);
 
@@ -132,7 +138,9 @@ public class Test
             powerPackSpecification: "MSI MAG A650BN");
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(specificationForFirstTest, new Computer.BuilderComputerClass(_computerDetailsFactory));
+        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+            specificationForFirstTest,
+            new Computer.BuilderComputerClass(_computerDetailsFactory));
 
         // Assert
         Assert.Equal(BuilderResultStatusType.Success, result.BuilderResultStatusType);
@@ -142,19 +150,41 @@ public class Test
     public void TestSecondBuilding()
     {
         // Arrange
-        var specificationForFirstTest = new SpecificationComponents(
+        var specificationForSeconfTest = new SpecificationComponents(
             motherboardSpecification: "GIGABYTE B770",
             corpusSpecification: "DEEPCOOL MATREXX 55 MESH",
             cpuNameSpecification: "Core i7-4790",
-            biosNameSpecification: "BIOS",
-            processorCoolingSystemSpecification: "DEEPCOOLES AK620 ZERO DARK",
+            biosNameSpecification: "BIOS2",
+            processorCoolingSystemSpecification: "DEEPCOOL AK620 ZERO DARK",
             ramSpecification: "Patriot Viper Venom",
             powerPackSpecification: "MSI MAG A650BN");
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(specificationForFirstTest, new Computer.BuilderComputerClass(_computerDetailsFactory));
+        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+            specificationForSeconfTest,
+            new Computer.BuilderComputerClass(_computerDetailsFactory));
 
         // Assert
-        Assert.Equal(BuilderResultStatusType.WorksWithoutWarrantyService, result.BuilderResultStatusType);
+        Assert.Equal(BuilderResultStatusType.UnsuccessfulBuild, result.BuilderResultStatusType);
+    }
+
+    [Fact]
+    public void TestThirdBuilding()
+    {
+        // Arrange
+        var specificationForThirdTest = new SpecificationComponents(
+            motherboardSpecification: "GIGABYTE B770",
+            corpusSpecification: "DEEPCOOL MATREXX 55 MESH",
+            cpuNameSpecification: "Core i7-4790",
+            biosNameSpecification: "UEFI",
+            processorCoolingSystemSpecification: "DEEPCOOL AK620 ZERO DARK",
+            ramSpecification: "Patriot Viper Venom",
+            powerPackSpecification: "MSI MAG A650BN");
+
+        // Act
+
+        // Assert
+        Assert.Throws<ArgumentNullException>(() => ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+            specificationForThirdTest, new Computer.BuilderComputerClass(_computerDetailsFactory)));
     }
 }
