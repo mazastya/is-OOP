@@ -1,4 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+﻿using System.Linq.Expressions;
+using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
@@ -25,7 +26,7 @@ public class SpecificationComponents
     public string MotherboardSpecification { get; set; }
     public string CorpusSpecification { get; set; }
     public string CpuNameSpecification { get; set; }
-    public string BiosNameSpecification { get; }
+    public string BiosNameSpecification { get; set; }
     public string ProcessorCoolingSystemSpecification { get; set; }
     public string RamSpecification { get; set; }
     public string PowerPackSpecification { get; set; }

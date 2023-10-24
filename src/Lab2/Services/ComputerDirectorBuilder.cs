@@ -7,13 +7,14 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 public class ComputerDirectorBuilder
 {
-    public Computer.BuilderComputerClass? BuilderComputerClass { get; set; }
+    public StepByStepComputerBuilding? BuilderComputerClass { get; set; }
 
     public static BuilderResult ComputerAssemblyWithSpecification(
         SpecificationComponents specificationComponents,
-        Computer.BuilderComputerClass builderComputerClass)
+        StepByStepComputerBuilding builderComputerClass)
     {
         builderComputerClass.ComputerMotherboardBuilder(specificationComponents.MotherboardSpecification);
+
         builderComputerClass.ComputerCorpusBuilder(specificationComponents.CorpusSpecification);
         builderComputerClass.ComputerCpuBuilder(specificationComponents.CpuNameSpecification);
         builderComputerClass.ComputerBiosBuilder(specificationComponents.BiosNameSpecification);
@@ -21,6 +22,9 @@ public class ComputerDirectorBuilder
             .ProcessorCoolingSystemSpecification);
         builderComputerClass.ComputerRamBuilder(specificationComponents.RamSpecification);
         builderComputerClass.ComputerPowerPackBuilder(specificationComponents.PowerPackSpecification);
+
+        builderComputerClass.BuildComputer();
+
         if (builderComputerClass.BuilderResult.BuilderResultStatusType == BuilderResultStatusType.UnsuccessfulBuild)
         {
             return builderComputerClass.BuilderResult;

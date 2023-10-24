@@ -20,6 +20,6 @@ public class MotherboardFactory : IFactory<Motherboard>
         Motherboard? motherboard = _motherboardList.FirstOrDefault(motherboard =>
             motherboard.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         return motherboard ??
-               throw new ArgumentNullException("This component is not on the parts list", nameof(motherboard));
+               throw new ArgumentNullException(nameof(motherboard), "This component is not on the parts list");
     }
 }

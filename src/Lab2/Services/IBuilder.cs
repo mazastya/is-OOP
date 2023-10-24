@@ -5,7 +5,6 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 public interface IBuilder<T>
 {
     IBuilder<T> ComputerMotherboardBuilder(string motherboardName);
-    IBuilder<T> ComputerCorpusBuilder(string corpusName);
     IBuilder<T> ComputerCpuBuilder(string cpuName);
 
     IBuilder<T> ComputerBiosBuilder(string biosName);

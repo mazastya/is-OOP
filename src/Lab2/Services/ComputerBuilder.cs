@@ -17,7 +17,6 @@ public abstract class ComputerBuilder<T> : IBuilder<T> // convenience builder???
     public BuilderResult BuilderResult { get; set; } = new BuilderResult();
 
     public abstract IBuilder<T> ComputerMotherboardBuilder(string motherboardName);
-    public abstract IBuilder<T> ComputerCorpusBuilder(string corpusName);
     public abstract IBuilder<T> ComputerCpuBuilder(string cpuName);
 
     public abstract IBuilder<T> ComputerBiosBuilder(string biosName);
