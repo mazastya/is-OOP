@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Itmo.ObjectOrientedProgramming.Lab2.Models;
 using IComponent = Itmo.ObjectOrientedProgramming.Lab2.Entities.IComponent;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services.DetailFactories;
@@ -23,6 +24,6 @@ public class FactoryBase<T> : IFactory<T>
         T? componentName = _componentList.FirstOrDefault(component =>
         component.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
         return componentName ??
-               throw new ArgumentNullException(nameof(componentName), "This component is not on the parts list");
+               throw new ComponentDoesntExistException("This component is not on the parts list");
     }
 }

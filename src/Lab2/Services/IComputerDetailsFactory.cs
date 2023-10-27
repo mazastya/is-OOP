@@ -1,4 +1,5 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.Entities.NecessaryComponents;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 

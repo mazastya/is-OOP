@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Itmo.ObjectOrientedProgramming.Lab2.Entities.NecessaryComponents;
 using Itmo.ObjectOrientedProgramming.Lab2.Services;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.DetailFactories;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.MessageForUser;
