@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
-public interface IBuilder<T>
+public interface IBuilder
 {
-    IBuilder<T> ComputerMotherboardBuilder(string motherboardName);
-    IBuilder<T> ComputerCpuBuilder(string cpuName);
+    IBuilder ComputerMotherboardBuilder(string motherboardName);
+    IBuilder ComputerCpuBuilder(string cpuName);
 
-    IBuilder<T> ComputerBiosBuilder(string biosName);
-    IBuilder<T> ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
-    IBuilder<T> ComputerRamBuilder(string ramName);
-    IBuilder<T> ComputerPowerPackBuilder(string powerPackName);
+    IBuilder ComputerBiosBuilder(string biosName);
+    IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
+    IBuilder ComputerRamBuilder(string ramName);
+    IBuilder ComputerPowerPackBuilder(string powerPackName);
 
-    Computer? BuildComputer();
+    Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators);
 }

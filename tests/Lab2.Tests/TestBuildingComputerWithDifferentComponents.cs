@@ -178,7 +178,7 @@ public class TestBuildingComputerWithDifferentComponents
         SpecificationComponents defaultSpecificationComponents = DefaultSpecificationComponents();
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+        BuilderResult result = new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             defaultSpecificationComponents,
             new StepByStepComputerBuilding(_computerDetailsFactory, _checkers));
 
@@ -193,7 +193,7 @@ public class TestBuildingComputerWithDifferentComponents
         SpecificationComponents defaultSpecificationComponents2 = DefaultSpecificationComponents(biosName: "UEFI");
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+        BuilderResult result = new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             defaultSpecificationComponents2,
             new StepByStepComputerBuilding(_computerDetailsFactory, _checkers));
 
@@ -216,7 +216,7 @@ public class TestBuildingComputerWithDifferentComponents
 
         // Act
         // Assert
-        Assert.Throws<ArgumentNullException>(() => ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+        Assert.Throws<ArgumentNullException>(() => new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             specificationForThirdTest, new StepByStepComputerBuilding(_computerDetailsFactory, _checkers)));
     }
 
@@ -228,7 +228,7 @@ public class TestBuildingComputerWithDifferentComponents
             DefaultSpecificationComponents(cpuName: "Core i7-4790");
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+        BuilderResult result = new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             defaultSpecificationComponents2,
             new StepByStepComputerBuilding(_computerDetailsFactory, _checkers));
 
@@ -244,7 +244,7 @@ public class TestBuildingComputerWithDifferentComponents
             DefaultSpecificationComponents(powerPackName: "MSI MAG A40BN");
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+        BuilderResult result = new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             defaultSpecificationComponents2,
             new StepByStepComputerBuilding(_computerDetailsFactory, _checkers));
 
@@ -260,7 +260,7 @@ public class TestBuildingComputerWithDifferentComponents
             DefaultSpecificationComponents(processorCoolingSystemName: "DEEPCOOL GAMMAXX 400 EX");
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+        BuilderResult result = new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             defaultSpecificationComponents2,
             new StepByStepComputerBuilding(_computerDetailsFactory, _checkers));
 
@@ -276,7 +276,7 @@ public class TestBuildingComputerWithDifferentComponents
             DefaultSpecificationComponents(ramName: "Patriot Viper Elite II");
 
         // Act
-        BuilderResult result = ComputerDirectorBuilder.ComputerAssemblyWithSpecification(
+        BuilderResult result = new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             defaultSpecificationComponents2,
             new StepByStepComputerBuilding(_computerDetailsFactory, _checkers));
 

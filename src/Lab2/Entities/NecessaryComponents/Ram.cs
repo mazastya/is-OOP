@@ -10,7 +10,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
  - Версия стандарта DDR
  - Потребляемая мощность (в ватт)
  */
-public class Ram
+public class Ram : IComponent
 {
     public Ram(
         string name,

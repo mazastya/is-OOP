@@ -3,7 +3,7 @@ using System.Net.Sockets;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
-public class ProcessorCoolingSystem
+public class ProcessorCoolingSystem : IComponent
 {
     public ProcessorCoolingSystem(string name, IList<string> listOfSupportedSockets, int tdp)
     {

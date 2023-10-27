@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.CheckCorrectBuilding;
@@ -8,18 +9,18 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 public class StepByStepComputerBuilding : ComputerBuilder<string>
 {
-    private readonly ComputerDetailsFactory _computerDetailsFactory;
+    private readonly IComputerDetailsFactory _computerDetailsFactory;
     private readonly IEnumerable<ICheckCorrectBuilding> _checkers;
 
     public StepByStepComputerBuilding(
-        ComputerDetailsFactory computerDetailsFactory,
+        IComputerDetailsFactory computerDetailsFactory,
         IEnumerable<ICheckCorrectBuilding> checkers)
     {
         _computerDetailsFactory = computerDetailsFactory;
         _checkers = checkers;
     }
 
-    public override IBuilder<string> ComputerMotherboardBuilder(string motherboardName)
+    public override IBuilder ComputerMotherboardBuilder(string motherboardName)
     {
         if (motherboardName == null)
         {
@@ -33,7 +34,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public IBuilder<string> ComputerCorpusBuilder(string corpusName)
+    public IBuilder ComputerCorpusBuilder(string corpusName)
     {
         if (corpusName == null)
         {
@@ -47,7 +48,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder<string> ComputerCpuBuilder(string cpuName)
+    public override IBuilder ComputerCpuBuilder(string cpuName)
     {
         if (cpuName == null)
         {
@@ -61,7 +62,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder<string> ComputerBiosBuilder(string? biosName)
+    public override IBuilder ComputerBiosBuilder(string? biosName)
     {
         if (biosName == null)
         {
@@ -75,7 +76,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder<string> ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName)
+    public override IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName)
     {
         if (processorCoolingSystemName == null)
         {
@@ -90,7 +91,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder<string> ComputerRamBuilder(string ramName)
+    public override IBuilder ComputerRamBuilder(string ramName)
     {
         if (ramName == null)
         {
@@ -104,7 +105,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder<string> ComputerPowerPackBuilder(string powerPackName)
+    public override IBuilder ComputerPowerPackBuilder(string powerPackName)
     {
         if (powerPackName == null)
         {
@@ -120,24 +121,10 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
 
     public override Computer? BuildComputer()
     {
-        RunCompatibilityCheck(_checkers);
-        if (BuilderResult.BuilderResultStatusType is BuilderResultStatusType.WorksWithoutWarrantyService ||
-            BuilderResult.BuilderResultStatusType is BuilderResultStatusType.Success)
-        {
-            return new Computer(
-                Motherboard,
-                Corpus,
-                Cpu,
-                Bios,
-                ProcessorCoolingSystem,
-                Ram,
-                PowerPack);
-        }
-
-        return default;
+        return BuildComputer(_checkers);
     }
 
-    public Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators)
+    public new Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators)
     {
         RunCompatibilityCheck(validators);
         if (BuilderResult.BuilderResultStatusType is BuilderResultStatusType.WorksWithoutWarrantyService ||

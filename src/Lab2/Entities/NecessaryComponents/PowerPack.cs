@@ -4,7 +4,7 @@
  - Пиковая нагрузка (в ваттах)
  */
 
-public class PowerPack
+public class PowerPack : IComponent
 {
     public PowerPack(
         string name,

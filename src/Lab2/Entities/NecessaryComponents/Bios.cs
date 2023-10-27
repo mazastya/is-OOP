@@ -9,18 +9,19 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 - Список поддерживаемых процессоров
  */
 
-public class Bios
+public class Bios : IComponent
 {
-    public Bios(string name, string type, int version, IList<Cpu> listOfSupportedProcessors)
+    public Bios(string name, string type, int version, IReadOnlyList<Cpu> listOfSupportedProcessors)
     {
         Name = name;
         Type = type;
         Version = version;
-        ListOfSupportedProcessors = listOfSupportedProcessors ?? throw new ArgumentNullException(nameof(listOfSupportedProcessors));
+        ListOfSupportedProcessors = listOfSupportedProcessors ??
+                                    throw new ArgumentNullException(nameof(listOfSupportedProcessors));
     }
 
     public string Name { get; } // имя
     public string Type { get; } // тип
     public int Version { get; } // версия
-    private IList<Cpu> ListOfSupportedProcessors { get; } // список поддерживаемых процессоров
+    private IReadOnlyList<Cpu> ListOfSupportedProcessors { get; } // список поддерживаемых процессоров
 }

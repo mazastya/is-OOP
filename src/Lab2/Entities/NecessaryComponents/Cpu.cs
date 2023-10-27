@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
 
@@ -12,7 +13,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
  - Потребляемая мощность (в ватт)
  */
 
-public class Cpu
+public class Cpu : IComponent
 {
     public Cpu(
         string name,

@@ -1,5 +1,6 @@
 ﻿using System;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.Models;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.DetailFactories;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
@@ -35,38 +36,40 @@ public class ComputerDetailsFactory : IComputerDetailsFactory
     public Motherboard CreateMotherboardByName(string motherboardName)
     {
         return _motherboardFactory.CreateComponentByName(motherboardName) ??
-               throw new ArgumentNullException(nameof(motherboardName));
+               throw new ComponentDoesntExistException(nameof(motherboardName));
     }
 
     public Corpus CreateCorpusByName(string corpusName)
     {
-        return _corpusFactory.CreateComponentByName(corpusName) ?? throw new ArgumentNullException(nameof(corpusName));
+        return _corpusFactory.CreateComponentByName(corpusName) ??
+               throw new ComponentDoesntExistException(nameof(corpusName));
     }
 
     public Cpu CreateCpuByName(string cpuName)
     {
-        return _cpuFactory.CreateComponentByName(cpuName) ?? throw new ArgumentNullException(nameof(cpuName));
+        return _cpuFactory.CreateComponentByName(cpuName) ?? throw new ComponentDoesntExistException(nameof(cpuName));
     }
 
     public Bios CreateBiosByName(string biosName)
     {
-        return _biosFactory.CreateComponentByName(biosName) ?? throw new ArgumentNullException(nameof(biosName));
+        return _biosFactory.CreateComponentByName(biosName) ??
+               throw new ComponentDoesntExistException(nameof(biosName));
     }
 
     public ProcessorCoolingSystem CreateProcessorCoolingSystemByName(string processorCoolingSystemName)
     {
         return _processorCoolingSysytemFactory.CreateComponentByName(processorCoolingSystemName) ??
-               throw new ArgumentNullException(nameof(processorCoolingSystemName));
+               throw new ComponentDoesntExistException(nameof(processorCoolingSystemName));
     }
 
     public Ram CreateRamByName(string ramName)
     {
-        return _ramFactory.CreateComponentByName(ramName) ?? throw new ArgumentNullException(nameof(ramName));
+        return _ramFactory.CreateComponentByName(ramName) ?? throw new ComponentDoesntExistException(nameof(ramName));
     }
 
     public PowerPack CreatePowerPackByName(string powerPackName)
     {
         return _powerPackFactory.CreateComponentByName(powerPackName) ??
-               throw new ArgumentNullException(nameof(powerPackName));
+               throw new ComponentDoesntExistException(nameof(powerPackName));
     }
 }

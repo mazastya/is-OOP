@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.DetailFactories;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.MessageForUser;
@@ -9,7 +10,8 @@ public class ComputerDirectorBuilder
 {
     public StepByStepComputerBuilding? BuilderComputerClass { get; set; }
 
-    public static BuilderResult ComputerAssemblyWithSpecification(
+    // [SuppressMessage("", "CA1822", Justification = "BuilderResult")]
+    public BuilderResult ComputerAssemblyWithSpecification(
         SpecificationComponents specificationComponents,
         StepByStepComputerBuilding builderComputerClass)
     {

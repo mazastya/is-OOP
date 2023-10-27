@@ -8,6 +8,7 @@ public interface IComputerDetailsFactory
     public Corpus CreateCorpusByName(string corpusName);
     public Cpu CreateCpuByName(string cpuName);
     public ProcessorCoolingSystem CreateProcessorCoolingSystemByName(string processorCoolingSystemName);
+    public Bios CreateBiosByName(string biosName);
     public Ram CreateRamByName(string ramName);
     public PowerPack CreatePowerPackByName(string powerPackName);
 }

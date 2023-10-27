@@ -1,9 +1,10 @@
+using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.MessageForUser;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
-public abstract class ComputerBuilder<T> : IBuilder<T> // convenience builder???
+public abstract class ComputerBuilder<T> : IBuilder // convenience builder???
 {
     public Motherboard? Motherboard { get; set; }
     public Corpus? Corpus { get; set; }
@@ -16,12 +17,17 @@ public abstract class ComputerBuilder<T> : IBuilder<T> // convenience builder???
 
     public BuilderResult BuilderResult { get; set; } = new BuilderResult();
 
-    public abstract IBuilder<T> ComputerMotherboardBuilder(string motherboardName);
-    public abstract IBuilder<T> ComputerCpuBuilder(string cpuName);
+    public abstract IBuilder ComputerMotherboardBuilder(string motherboardName);
+    public abstract IBuilder ComputerCpuBuilder(string cpuName);
 
-    public abstract IBuilder<T> ComputerBiosBuilder(string biosName);
-    public abstract IBuilder<T> ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
-    public abstract IBuilder<T> ComputerRamBuilder(string ramName);
-    public abstract IBuilder<T> ComputerPowerPackBuilder(string powerPackName);
+    public abstract IBuilder ComputerBiosBuilder(string biosName);
+    public abstract IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
+    public abstract IBuilder ComputerRamBuilder(string ramName);
+    public abstract IBuilder ComputerPowerPackBuilder(string powerPackName);
+    public Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators)
+    {
+        throw new System.NotImplementedException();
+    }
+
     public abstract Computer? BuildComputer();
 }

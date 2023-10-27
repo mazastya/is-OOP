@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Itmo.ObjectOrientedProgramming.Lab2.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
@@ -8,7 +9,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
  - Габариты
  */
 
-public class Corpus
+public class Corpus : IComponent
 {
     public Corpus(
         string name,

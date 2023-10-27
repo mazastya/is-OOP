@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using Itmo.ObjectOrientedProgramming.Lab2.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
@@ -14,7 +15,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Entities;
  - BIOS (Тип, Версия)
  */
 
-public class Motherboard
+public class Motherboard : IComponent
 {
     public Motherboard(
         string name,
