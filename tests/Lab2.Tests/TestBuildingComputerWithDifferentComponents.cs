@@ -217,7 +217,7 @@ public class TestBuildingComputerWithDifferentComponents
 
         // Act
         // Assert
-        Assert.Throws<ArgumentNullException>(() => new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
+        Assert.Throws<ComponentDoesntExistException>(() => new ComputerDirectorBuilder().ComputerAssemblyWithSpecification(
             specificationForThirdTest, new StepByStepComputerBuilding(_computerDetailsFactory, _checkers)));
     }
 
