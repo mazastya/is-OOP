@@ -5,13 +5,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 public interface IBuilder
 {
-    IBuilder ComputerMotherboardBuilder(string motherboardName);
-    IBuilder ComputerCpuBuilder(string cpuName);
+    IBuilder WithMotherboard(string motherboardName);
+    IBuilder WithCpu(string cpuName);
 
-    IBuilder ComputerBiosBuilder(string biosName);
-    IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
-    IBuilder ComputerRamBuilder(string ramName);
-    IBuilder ComputerPowerPackBuilder(string powerPackName);
+    IBuilder WithBios(string biosName);
+    IBuilder WithProcessorCoolingSystem(string processorCoolingSystemName);
+    IBuilder WithRam(string ramName);
+    IBuilder WithPowerPack(string powerPackName);
 
     Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators);
 }

@@ -11,15 +11,14 @@ public class ComputerDirectorBuilder
         SpecificationComponents specificationComponents,
         StepByStepComputerBuilding builderComputerClass)
     {
-        builderComputerClass.ComputerMotherboardBuilder(specificationComponents.MotherboardSpecification);
-
+        builderComputerClass.WithMotherboard(specificationComponents.MotherboardSpecification);
         builderComputerClass.ComputerCorpusBuilder(specificationComponents.CorpusSpecification);
-        builderComputerClass.ComputerCpuBuilder(specificationComponents.CpuNameSpecification);
-        builderComputerClass.ComputerBiosBuilder(specificationComponents.BiosNameSpecification);
-        builderComputerClass.ComputerProcessorCoolingSystemBuilder(specificationComponents
+        builderComputerClass.WithCpu(specificationComponents.CpuNameSpecification);
+        builderComputerClass.WithBios(specificationComponents.BiosNameSpecification);
+        builderComputerClass.WithProcessorCoolingSystem(specificationComponents
             .ProcessorCoolingSystemSpecification);
-        builderComputerClass.ComputerRamBuilder(specificationComponents.RamSpecification);
-        builderComputerClass.ComputerPowerPackBuilder(specificationComponents.PowerPackSpecification);
+        builderComputerClass.WithRam(specificationComponents.RamSpecification);
+        builderComputerClass.WithPowerPack(specificationComponents.PowerPackSpecification);
 
         builderComputerClass.BuildComputer();
 

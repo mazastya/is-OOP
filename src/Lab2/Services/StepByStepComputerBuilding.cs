@@ -20,7 +20,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         _checkers = checkers;
     }
 
-    public override IBuilder ComputerMotherboardBuilder(string motherboardName)
+    public override IBuilder WithMotherboard(string motherboardName)
     {
         if (motherboardName == null)
         {
@@ -48,7 +48,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder ComputerCpuBuilder(string cpuName)
+    public override IBuilder WithCpu(string cpuName)
     {
         if (cpuName == null)
         {
@@ -62,7 +62,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder ComputerBiosBuilder(string? biosName)
+    public override IBuilder WithBios(string? biosName)
     {
         if (biosName == null)
         {
@@ -76,7 +76,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName)
+    public override IBuilder WithProcessorCoolingSystem(string processorCoolingSystemName)
     {
         if (processorCoolingSystemName == null)
         {
@@ -91,7 +91,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder ComputerRamBuilder(string ramName)
+    public override IBuilder WithRam(string ramName)
     {
         if (ramName == null)
         {
@@ -105,7 +105,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         return this;
     }
 
-    public override IBuilder ComputerPowerPackBuilder(string powerPackName)
+    public override IBuilder WithPowerPack(string powerPackName)
     {
         if (powerPackName == null)
         {

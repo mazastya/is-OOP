@@ -18,13 +18,13 @@ public abstract class ComputerBuilder<T> : IBuilder // convenience builder???
 
     public BuilderResult BuilderResult { get; set; } = new BuilderResult();
 
-    public abstract IBuilder ComputerMotherboardBuilder(string motherboardName);
-    public abstract IBuilder ComputerCpuBuilder(string cpuName);
+    public abstract IBuilder WithMotherboard(string motherboardName);
+    public abstract IBuilder WithCpu(string cpuName);
 
-    public abstract IBuilder ComputerBiosBuilder(string biosName);
-    public abstract IBuilder ComputerProcessorCoolingSystemBuilder(string processorCoolingSystemName);
-    public abstract IBuilder ComputerRamBuilder(string ramName);
-    public abstract IBuilder ComputerPowerPackBuilder(string powerPackName);
+    public abstract IBuilder WithBios(string biosName);
+    public abstract IBuilder WithProcessorCoolingSystem(string processorCoolingSystemName);
+    public abstract IBuilder WithRam(string ramName);
+    public abstract IBuilder WithPowerPack(string powerPackName);
     public Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators)
     {
         throw new System.NotImplementedException();
