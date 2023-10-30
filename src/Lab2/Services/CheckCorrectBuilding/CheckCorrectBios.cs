@@ -5,7 +5,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab2.Services.CheckCorrectBuilding;
 
 public class CheckCorrectBios : ICheckCorrectBuilding
 {
-    public void CheckCorrectBuilding(ComputerBuilder<string> computerBuilder)
+    public void CheckCorrectBuilding(ComputerBuilder computerBuilder)
     {
         ArgumentNullException.ThrowIfNull(computerBuilder);
         if (computerBuilder.Motherboard == null)

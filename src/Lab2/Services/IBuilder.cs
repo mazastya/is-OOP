@@ -1,17 +1,18 @@
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.Entities.NecessaryComponents;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
 public interface IBuilder
 {
-    IBuilder WithMotherboard(string motherboardName);
-    IBuilder WithCpu(string cpuName);
+    IBuilder WithMotherboard(Motherboard motherboardName);
+    IBuilder WithCpu(Cpu cpuName);
 
-    IBuilder WithBios(string biosName);
-    IBuilder WithProcessorCoolingSystem(string processorCoolingSystemName);
-    IBuilder WithRam(string ramName);
-    IBuilder WithPowerPack(string powerPackName);
+    IBuilder WithBios(Bios biosName);
+    IBuilder WithProcessorCoolingSystem(ProcessorCoolingSystem processorCoolingSystemName);
+    IBuilder WithRam(Ram ramName);
+    IBuilder WithPowerPack(PowerPack powerPackName);
 
     Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators);
 }

@@ -5,7 +5,7 @@ using Itmo.ObjectOrientedProgramming.Lab2.Services.MessageForUser;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
-public abstract class ComputerBuilder<T> : IBuilder // convenience builder???
+public abstract class ComputerBuilder : IBuilder // convenience builder???
 {
     public Motherboard? Motherboard { get; set; }
     public Corpus? Corpus { get; set; }
@@ -18,13 +18,13 @@ public abstract class ComputerBuilder<T> : IBuilder // convenience builder???
 
     public BuilderResult BuilderResult { get; set; } = new BuilderResult();
 
-    public abstract IBuilder WithMotherboard(string motherboardName);
-    public abstract IBuilder WithCpu(string cpuName);
+    public abstract IBuilder WithMotherboard(Motherboard motherboardName);
+    public abstract IBuilder WithCpu(Cpu cpuName);
 
-    public abstract IBuilder WithBios(string biosName);
-    public abstract IBuilder WithProcessorCoolingSystem(string processorCoolingSystemName);
-    public abstract IBuilder WithRam(string ramName);
-    public abstract IBuilder WithPowerPack(string powerPackName);
+    public abstract IBuilder WithBios(Bios biosName);
+    public abstract IBuilder WithProcessorCoolingSystem(ProcessorCoolingSystem processorCoolingSystemName);
+    public abstract IBuilder WithRam(Ram ramName);
+    public abstract IBuilder WithPowerPack(PowerPack powerPackName);
     public Computer? BuildComputer(IEnumerable<ICheckCorrectBuilding> validators)
     {
         throw new System.NotImplementedException();

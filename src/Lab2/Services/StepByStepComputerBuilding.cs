@@ -2,12 +2,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using Itmo.ObjectOrientedProgramming.Lab2.Entities;
+using Itmo.ObjectOrientedProgramming.Lab2.Entities.NecessaryComponents;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.CheckCorrectBuilding;
 using Itmo.ObjectOrientedProgramming.Lab2.Services.MessageForUser;
 
 namespace Itmo.ObjectOrientedProgramming.Lab2.Services;
 
-public class StepByStepComputerBuilding : ComputerBuilder<string>
+public class StepByStepComputerBuilding : ComputerBuilder
 {
     private readonly IComputerDetailsFactory _computerDetailsFactory;
     private readonly IEnumerable<ICheckCorrectBuilding> _checkers;
@@ -20,7 +21,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         _checkers = checkers;
     }
 
-    public override IBuilder WithMotherboard(string motherboardName)
+    public override IBuilder WithMotherboard(Motherboard motherboardName)
     {
         if (motherboardName == null)
         {
@@ -30,11 +31,11 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
             return this;
         }
 
-        Motherboard = _computerDetailsFactory.CreateMotherboardByName(motherboardName);
+        Motherboard = _computerDetailsFactory.CreateMotherboardByName(motherboardName.Name);
         return this;
     }
 
-    public IBuilder ComputerCorpusBuilder(string corpusName)
+    public IBuilder ComputerCorpusBuilder(Corpus corpusName)
     {
         if (corpusName == null)
         {
@@ -44,11 +45,11 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
             return this;
         }
 
-        Corpus = _computerDetailsFactory.CreateCorpusByName(corpusName);
+        Corpus = _computerDetailsFactory.CreateCorpusByName(corpusName.Name);
         return this;
     }
 
-    public override IBuilder WithCpu(string cpuName)
+    public override IBuilder WithCpu(Cpu cpuName)
     {
         if (cpuName == null)
         {
@@ -58,11 +59,11 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
             return this;
         }
 
-        Cpu = _computerDetailsFactory.CreateCpuByName(cpuName);
+        Cpu = _computerDetailsFactory.CreateCpuByName(cpuName.Name);
         return this;
     }
 
-    public override IBuilder WithBios(string? biosName)
+    public override IBuilder WithBios(Bios biosName)
     {
         if (biosName == null)
         {
@@ -72,11 +73,11 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
             return this;
         }
 
-        Bios = _computerDetailsFactory.CreateBiosByName(biosName);
+        Bios = _computerDetailsFactory.CreateBiosByName(biosName.Name);
         return this;
     }
 
-    public override IBuilder WithProcessorCoolingSystem(string processorCoolingSystemName)
+    public override IBuilder WithProcessorCoolingSystem(ProcessorCoolingSystem processorCoolingSystemName)
     {
         if (processorCoolingSystemName == null)
         {
@@ -87,11 +88,11 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
         }
 
         ProcessorCoolingSystem =
-            _computerDetailsFactory.CreateProcessorCoolingSystemByName(processorCoolingSystemName);
+            _computerDetailsFactory.CreateProcessorCoolingSystemByName(processorCoolingSystemName.Name);
         return this;
     }
 
-    public override IBuilder WithRam(string ramName)
+    public override IBuilder WithRam(Ram ramName)
     {
         if (ramName == null)
         {
@@ -101,11 +102,11 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
             return this;
         }
 
-        Ram = _computerDetailsFactory.CreateRamByName(ramName);
+        Ram = _computerDetailsFactory.CreateRamByName(ramName.Name);
         return this;
     }
 
-    public override IBuilder WithPowerPack(string powerPackName)
+    public override IBuilder WithPowerPack(PowerPack powerPackName)
     {
         if (powerPackName == null)
         {
@@ -115,7 +116,7 @@ public class StepByStepComputerBuilding : ComputerBuilder<string>
             return this;
         }
 
-        PowerPack = _computerDetailsFactory.CreatePowerPackByName(powerPackName);
+        PowerPack = _computerDetailsFactory.CreatePowerPackByName(powerPackName.Name);
         return this;
     }
 
