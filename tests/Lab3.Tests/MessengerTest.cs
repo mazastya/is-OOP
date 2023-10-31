@@ -1,5 +1,7 @@
+using System.Drawing;
 using System.Linq;
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Addressee;
+using Itmo.ObjectOrientedProgramming.Lab3.Entities.Display;
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Messages;
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Messanger;
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Topics;
@@ -74,5 +76,24 @@ public class MessengerTest
 
         // Assert
         logger.Verify(mock => mock.Log(It.IsRegex("MESSENGER")), Times.Once);
+    }
+
+    [Fact]
+    public void TestDisplay()
+    {
+        // Arrange
+        var message = new Mock<Message>();
+        var logger = new Mock<ILogger>();
+        var display = new Display();
+        var messengerAdapter = new DisplayAdapter(display);
+        var topic = new Topic("Title", messengerAdapter);
+
+        display.Color = Color.Aqua;
+
+        // Act
+        topic.SendMessage(message.Object);
+
+        // Assert
+        logger.Verify(mock => mock.Log(It.IsAny<string>()), Times.Once);
     }
 }

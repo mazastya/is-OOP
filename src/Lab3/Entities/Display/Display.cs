@@ -17,7 +17,7 @@ public class Display : IDisplay
 
     private void ClearScreen()
     {
-        Console.Clear();
+        // Console.Clear();
         TextToDisplay = string.Empty;
     }
 }
