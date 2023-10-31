@@ -8,7 +8,6 @@ using Itmo.ObjectOrientedProgramming.Lab3.Entities.Topics;
 using Itmo.ObjectOrientedProgramming.Lab3.Models;
 using Itmo.ObjectOrientedProgramming.Lab3.Services.Loggers;
 using Moq;
-using NSubstitute;
 using Xunit;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Tests;
