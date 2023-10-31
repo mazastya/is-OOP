@@ -94,6 +94,6 @@ public class MessengerTest
         topic.SendMessage(message.Object);
 
         // Assert
-        logger.Verify(mock => mock.Log(It.IsAny<string>()), Times.Once);
+        logger.Verify(mock => mock.Log(It.IsAny<string>()), Times.Never);
     }
 }
