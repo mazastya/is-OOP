@@ -9,14 +9,14 @@ public class Topic : ITopic
     private readonly IAddressee _addressee;
 
     public Topic(
-        string name,
+        string title,
         IAddressee addressee)
     {
         _addressee = addressee;
-        Name = name;
+        Title = title;
     }
 
-    public string Name { get; }
+    public string Title { get; }
 
     public void SendMessage(Message message)
     {
