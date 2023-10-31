@@ -61,23 +61,6 @@ public class MessengerTest
     }
 
     [Fact]
-    public void TestLoggerMoq()
-    {
-        // Arrange
-        var message = new Mock<Message>();
-        var logger = new Mock<ILogger>();
-        var messenger = new Messenger(logger.Object);
-
-        var topic = new Topic("Title", new MessengerAdapter(messenger));
-
-        // Act
-        topic.SendMessage(message.Object);
-
-        // Assert
-        logger.Verify(mock => mock.Log(It.IsRegex("MESSENGER")), Times.Once);
-    }
-
-    [Fact]
     public void TestDisplay()
     {
         // Arrange
@@ -92,5 +75,22 @@ public class MessengerTest
 
         // Assert
         logger.Verify(mock => mock.Log(It.IsAny<string>()), Times.Never);
+    }
+
+    [Fact]
+    public void TestLoggerMoq()
+    {
+        // Arrange
+        var message = new Mock<Message>();
+        var logger = new Mock<ILogger>();
+        var messenger = new Messenger(logger.Object);
+
+        var topic = new Topic("Title", new MessengerAdapter(messenger));
+
+        // Act
+        topic.SendMessage(message.Object);
+
+        // Assert
+        logger.Verify(mock => mock.Log(It.IsRegex("MESSENGER")), Times.Once);
     }
 }
