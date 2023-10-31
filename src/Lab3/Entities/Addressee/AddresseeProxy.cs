@@ -4,7 +4,7 @@ using Itmo.ObjectOrientedProgramming.Lab3.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Addressee;
 
-public class AddresseeProxy : IAddresseeProxy
+public class AddresseeProxy : IAddressee
 {
     private readonly IAddressee _addressee;
     private readonly LevelOfImportance _levelOfImportance;
