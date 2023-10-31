@@ -27,7 +27,7 @@ public class MessengerTest
         topic.SendMessage(message);
 
         // Assert
-        Assert.Single(user.ReceivedMessages);
+        Assert.Single(user.MessageAdapters);
     }
 
     [Fact]
@@ -42,7 +42,7 @@ public class MessengerTest
         topic.SendMessage(message);
 
         // Assert
-        Assert.True(user.ReceivedMessages.All(userMessage => !userMessage.ReadState));
+        Assert.True(user.MessageAdapters.All(userMessage => !userMessage.ReadState));
     }
 
     [Fact]
@@ -58,7 +58,7 @@ public class MessengerTest
         message.ReadMessage();
 
         // Assert
-        Assert.False(user.ReceivedMessages.All(userMessage => userMessage.ReadState));
+        Assert.False(user.MessageAdapters.All(userMessage => userMessage.ReadState));
     }
 
     [Fact]

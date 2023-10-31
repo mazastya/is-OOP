@@ -7,7 +7,7 @@ namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Addressee;
 public class UserAddressee : IAddressee
 {
     private readonly List<MessageAdapter> _messagesAdapters = new List<MessageAdapter>();
-    public IEnumerable<MessageAdapter> ReceivedMessages => _messagesAdapters;
+    public IEnumerable<MessageAdapter> MessageAdapters => _messagesAdapters;
 
     public void Receive(Message message)
     {
