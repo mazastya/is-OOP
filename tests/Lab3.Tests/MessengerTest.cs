@@ -82,16 +82,14 @@ public class MessengerTest
     public void TestDisplay()
     {
         // Arrange
-        var message = new Mock<Message>();
         var logger = new Mock<ILogger>();
         var display = new Display();
-        var messengerAdapter = new DisplayAdapter(display);
-        var topic = new Topic("Title", messengerAdapter);
+        var topic = new Topic("Title", new DisplayAdapter(display));
 
         display.Color = Color.Aqua;
 
         // Act
-        topic.SendMessage(message.Object);
+        topic.SendMessage(new Message());
 
         // Assert
         logger.Verify(mock => mock.Log(It.IsAny<string>()), Times.Never);
