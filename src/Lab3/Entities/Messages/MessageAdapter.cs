@@ -12,7 +12,7 @@ public class MessageAdapter : Message
     }
 
     public bool ReadState { get; protected set; }
-    protected Message CustomisedMessage { get; }
+    public Message CustomisedMessage { get; }
 
     public void ReadMessage()
     {

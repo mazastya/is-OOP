@@ -4,6 +4,9 @@ using Itmo.ObjectOrientedProgramming.Lab3.Entities.Messages;
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Messanger;
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Topics;
 using Itmo.ObjectOrientedProgramming.Lab3.Models;
+using Itmo.ObjectOrientedProgramming.Lab3.Services.Loggers;
+using Moq;
+using NSubstitute;
 using Xunit;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Tests;
@@ -38,5 +41,38 @@ public class MessengerTest
 
         // Assert
         Assert.True(user.ReceivedMessages.All(userMessage => !userMessage.ReadState));
+    }
+
+    [Fact]
+    public void TestUserReadsAnAlreadyReadMessage()
+    {
+        // Arrange
+        var message = new MessageAdapter(new DirectedMessage("title", LevelOfImportance.MediumImportance));
+        var user = new UserAddressee();
+        ITopic topic = new Topic("Topic Title", user);
+
+        // Act
+        topic.SendMessage(message);
+        message.ReadMessage();
+
+        // Assert
+        Assert.False(user.ReceivedMessages.All(userMessage => userMessage.ReadState));
+    }
+
+    [Fact]
+    public void TestLoggerMoq()
+    {
+        // Arrange
+        var message = new Mock<Message>();
+        var logger = new Mock<ILogger>();
+        var messenger = new Messenger(logger.Object);
+
+        var topic = new Topic("Title", new MessengerAdapter(messenger));
+
+        // Act
+        topic.SendMessage(message.Object);
+
+        // Assert
+        logger.Verify(mock => mock.Log(It.IsRegex("MESSENGER")), Times.Once);
     }
 }
