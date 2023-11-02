@@ -25,6 +25,6 @@ public class Sender
         ArgumentNullException.ThrowIfNull(topicTitle);
         Topic? findTopicTitle =
             _topics.FirstOrDefault(topic => topic.Title.Equals(topicTitle, StringComparison.OrdinalIgnoreCase));
-        _addressee.Receive(message);
+        findTopicTitle?.SendMessage(message);
     }
 }
