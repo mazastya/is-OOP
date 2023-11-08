@@ -1,17 +1,16 @@
-using System;
 using Itmo.ObjectOrientedProgramming.Lab3.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messages;
 
-public class MessageAdapter : Message
+public class MessageAddressee : Message
 {
-    public MessageAdapter(Message customisedMessage)
+    public MessageAddressee(Message customisedMessage)
     {
         CustomisedMessage = customisedMessage;
         ReadState = false;
     }
 
-    public bool ReadState { get; protected set; }
+    public bool ReadState { get; private set; }
     public Message CustomisedMessage { get; }
 
     public void ReadMessage()

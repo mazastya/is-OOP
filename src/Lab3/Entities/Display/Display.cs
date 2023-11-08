@@ -1,23 +1,22 @@
-﻿using System;
-using System.Drawing;
+﻿using Castle.Core.Logging;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Display;
 
 public class Display : IDisplay
 {
-    public Color Color { get; set; }
-    private string TextToDisplay { get; set; } = string.Empty;
+    private readonly ILogger _logger;
+    private readonly IDisplayDriver _driver;
+
+    public Display(ILogger logger, IDisplayDriver driver)
+    {
+        _logger = logger;
+        _driver = driver;
+    }
 
     public void PrintColorText(string textBody)
     {
-        ArgumentNullException.ThrowIfNull(textBody);
-        ClearScreen();
-        TextToDisplay = Crayon.Output.Rgb(Color.R, Color.G, Color.B).Text(textBody);
-    }
-
-    private void ClearScreen()
-    {
-        // Console.Clear();
-        TextToDisplay = string.Empty;
+        _driver.ClearOutput();
+        _driver.SetTextBody(textBody);
+        _logger.CreateChildLogger(_driver.GetColorText());
     }
 }

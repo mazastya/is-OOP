@@ -1,15 +1,13 @@
 ﻿using System;
-using Itmo.ObjectOrientedProgramming.Lab3.Entities.Addressee;
-using Itmo.ObjectOrientedProgramming.Lab3.Entities.Messages;
 using Itmo.ObjectOrientedProgramming.Lab3.Services.Loggers;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messanger;
+namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messenger;
 
-public class Messenger : IMessenger, IAddressee
+public class Messenger : IMessenger
 {
-    private readonly ILogger _logger;
+    private readonly ILogger<string> _logger;
 
-    public Messenger(ILogger logger)
+    public Messenger(ILogger<string> logger)
     {
         _logger = logger;
     }
@@ -21,11 +19,5 @@ public class Messenger : IMessenger, IAddressee
         ArgumentNullException.ThrowIfNull(textBody);
         TextToMessenger += textBody;
         _logger.Log("MESSENGER" + '\n' + textBody);
-    }
-
-    public void Receive(Message message)
-    {
-        ArgumentNullException.ThrowIfNull(message);
-        TextToMessenger = message.BodyText;
     }
 }

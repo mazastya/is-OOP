@@ -4,12 +4,12 @@ using Itmo.ObjectOrientedProgramming.Lab3.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Addressee;
 
-public class AddresseeProxy : IAddressee
+public class AddresseePriorityFilterProxy : IAddressee
 {
     private readonly IAddressee _addressee;
     private readonly LevelOfImportance _levelOfImportance;
 
-    public AddresseeProxy(
+    public AddresseePriorityFilterProxy(
         IAddressee addressee,
         LevelOfImportance levelOfImportance)
     {

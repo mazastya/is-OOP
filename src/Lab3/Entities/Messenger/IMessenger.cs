@@ -1,4 +1,4 @@
-namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messanger;
+namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messenger;
 
 public interface IMessenger
 {

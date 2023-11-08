@@ -2,11 +2,11 @@
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Addressee;
 using Itmo.ObjectOrientedProgramming.Lab3.Entities.Messages;
 
-namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messanger;
+namespace Itmo.ObjectOrientedProgramming.Lab3.Entities.Messenger;
 
-public class MessengerAdapter : IAddressee
+public class MessengerText : IAddressee
 {
-    public MessengerAdapter(IMessenger messenger)
+    public MessengerText(IMessenger messenger)
     {
         Messenger = messenger;
     }
