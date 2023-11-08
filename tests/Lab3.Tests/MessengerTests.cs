@@ -12,7 +12,7 @@ using Xunit;
 
 namespace Itmo.ObjectOrientedProgramming.Lab3.Tests;
 
-public class MessengerTest
+public class MessengerTests
 {
     [Fact]
     public void TestUserReceiveMessage()
