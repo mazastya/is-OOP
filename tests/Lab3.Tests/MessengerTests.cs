@@ -45,6 +45,24 @@ public class MessengerTests
     }
 
     [Fact]
+    public void TestLoggerProxyDoLog()
+    {
+        // Arrange
+        var message = new Mock<Message>();
+        var addressee = new Mock<IAddressee>();
+        var logger = new Mock<ILogger>();
+        var addresseeLoggerProxy = new AddresseeLoggerProxy(addressee.Object, logger.Object);
+
+        var topic = new Topic("Topic Title", addresseeLoggerProxy);
+
+        // Act
+        topic.SendMessage(message.Object);
+
+        // Assert
+        logger.Verify(mock => mock.CreateChildLogger(It.IsAny<string>()), Times.Once);
+    }
+
+    [Fact]
     public void TestUserReadsAnAlreadyReadMessage()
     {
         // Arrange
