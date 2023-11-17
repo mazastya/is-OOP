@@ -60,4 +60,19 @@ public class ActCompliteTest
         // Assert
         Assert.Equal("act complete", ans);
     }
+
+    [Fact]
+    public void NotCorrectCommand()
+    {
+        // Arrange
+        string path1 =
+            @"D:\Programs_from_installation\Rider\mazastya\src\Lab4\bin\Debug\net7.0\Folder2\Folder2_1\move_test.txt D:\Programs_from_installation\Rider\mazastya\src\Lab4\bin\Debug\net7.0\Folder1";
+        string[] path = path1.Split(' ');
+        var parser = new MoveFileFlag();
+
+        // Act
+
+        // Assert
+        Assert.Throws<RequestCannotBeHandledException>(() => parser.HandleRequest(path));
+    }
 }
