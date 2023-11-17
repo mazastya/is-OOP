@@ -5,17 +5,17 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 public class RenameFile : Command
 {
-    public RenameFile(MyFile myFile, string newNameFile)
-        : base(myFile)
+    public RenameFile(string pathFile, string newNameFile)
+        : base(pathFile)
     {
-        MyFile = myFile;
+        PathFile = pathFile;
         NewNameFile = newNameFile;
     }
 
     private string NewNameFile { get; set; }
 
-    public override void Execute(MyFile myFile)
+    public override void Execute(string pathFile)
     {
-        File.Move(MyFile.PathFile, NewNameFile, true);
+        File.Move(pathFile, NewNameFile, true);
     }
 }

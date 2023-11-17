@@ -4,12 +4,12 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 public abstract class Command
 {
-    protected Command(MyFile myFile)
+    protected Command(string pathFile)
     {
-        MyFile = myFile;
+        PathFile = pathFile;
     }
 
-    public MyFile MyFile { get; set; }
+    public string PathFile { get; set; }
 
-    public abstract void Execute(MyFile myFile);
+    public abstract void Execute(string pathFile);
 }

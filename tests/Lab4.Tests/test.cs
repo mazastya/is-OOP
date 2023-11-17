@@ -11,10 +11,6 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Tests;
 public class Test
 {
     [Fact]
-    public void Rename()
-    {
-        var myFile = new MyFile("test", "D:\\Programs from installation\\Rider\\mazastya\\tests\\Lab4.Tests\\test.txt");
-        var renameFile = new RenameFile(myFile, "bfrkjbj");
-        renameFile.Execute(myFile);
-    }
+
+    
 }

@@ -4,17 +4,15 @@ using Itmo.ObjectOrientedProgramming.Lab4.Entities;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
-public class ViewFile
+public class ViewFile : Command
 {
-    private readonly MyFile _myFile;
-
-    public ViewFile(MyFile myFile)
+    public ViewFile(string pathFile)
+        : base(pathFile)
     {
-        _myFile = myFile;
     }
 
-    public static string Writes(MyFile myFile)
+    public override void Execute(string pathFile)
     {
-        return File.ReadAllText(myFile.PathFile);
+        File.ReadAllText(pathFile);
     }
 }

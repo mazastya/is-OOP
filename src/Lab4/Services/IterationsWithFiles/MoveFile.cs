@@ -5,16 +5,16 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 public class MoveFile : Command
 {
-    public MoveFile(MyFile myFile, string newPathFile)
-        : base(myFile)
+    public MoveFile(string pathFile, string newPathFile)
+        : base(pathFile)
     {
         NewPathFile = newPathFile;
     }
 
     private string NewPathFile { get; set; }
 
-    public override void Execute(MyFile myFile)
+    public override void Execute(string pathFile)
     {
-        File.Move(myFile.PathFile, NewPathFile);
+        File.Move(pathFile, NewPathFile);
     }
 }

@@ -5,13 +5,13 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 public class DeleteFile : Command
 {
-    public DeleteFile(MyFile myFile)
-        : base(myFile)
+    public DeleteFile(string pathFile)
+        : base(pathFile)
     {
     }
 
-    public override void Execute(MyFile myFile)
+    public override void Execute(string pathFile)
     {
-        File.Delete(myFile.PathFile);
+        File.Delete(pathFile);
     }
 }
