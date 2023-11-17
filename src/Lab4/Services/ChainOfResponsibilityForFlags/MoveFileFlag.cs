@@ -9,9 +9,10 @@ public class MoveFileFlag : HandlerBase
         return request[0] == "file" && request[1] == "move";
     }
 
-    protected override void Handle(string[] request)
+    protected override string Handle(string[] request)
     {
         var moveFile = new MoveFile(request[2], request[3]);
         moveFile.Execute(request[2]);
+        return "move complite";
     }
 }

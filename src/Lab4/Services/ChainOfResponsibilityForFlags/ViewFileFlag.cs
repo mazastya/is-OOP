@@ -21,9 +21,10 @@ public class ViewFileFlag : HandlerBase
         return false;
     }
 
-    protected override void Handle(string[] request)
+    protected override string Handle(string[] request)
     {
         var viewFile = new ViewFile(request[2]);
         viewFile.Execute(request[2]);
+        return "viewed file complete";
     }
 }

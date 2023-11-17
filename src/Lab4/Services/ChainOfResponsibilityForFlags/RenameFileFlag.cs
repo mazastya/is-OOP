@@ -9,9 +9,10 @@ public class RenameFileFlag : HandlerBase
         return request[0] == "file" && request[1] == "rename";
     }
 
-    protected override void Handle(string[] request)
+    protected override string Handle(string[] request)
     {
         var renameFile = new RenameFile(request[2], request[3]);
         renameFile.Execute(request[2]);
+        return "rename complite";
     }
 }

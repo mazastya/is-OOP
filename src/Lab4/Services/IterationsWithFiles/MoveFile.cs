@@ -15,6 +15,6 @@ public class MoveFile : Command
 
     public override void Execute(string pathFile)
     {
-        File.Move(pathFile, NewPathFile);
+        File.Move(pathFile, NewPathFile, true);
     }
 }

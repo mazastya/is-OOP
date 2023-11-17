@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Input;
 using Itmo.ObjectOrientedProgramming.Lab4.Models.Exception;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
@@ -12,7 +13,7 @@ public abstract class HandlerBase : IHandler
         _nextHandler = handler;
     }
 
-    public virtual void HandleRequest(string[] request)
+    public string HandleRequest(string[] request)
     {
         if (CanHandle(request))
         {
@@ -26,8 +27,10 @@ public abstract class HandlerBase : IHandler
         {
             throw new RequestCannotBeHandledException("Request cannot be handled!");
         }
+
+        return "act complete";
     }
 
     protected abstract bool CanHandle(string[] request);
-    protected abstract void Handle(string[] request);
+    protected abstract string Handle(string[] request);
 }

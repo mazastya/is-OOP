@@ -4,9 +4,9 @@ using Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
-public class TreeListCommand : Command
+public class TreeList : Command
 {
-    public TreeListCommand(string pathFile, Tree tree, int maxDepth = 1)
+    public TreeList(string pathFile, Tree tree, int maxDepth = 1)
         : base(pathFile)
     {
         Tree = tree;
