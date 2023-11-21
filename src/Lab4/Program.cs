@@ -2,7 +2,7 @@
 
 namespace Itmo.ObjectOrientedProgramming.Lab4;
 
-public static class Programm
+public static class Program
 {
     public static void Main()
     {
