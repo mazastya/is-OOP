@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using Itmo.ObjectOrientedProgramming.Lab4.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
@@ -11,7 +12,11 @@ public interface IFileSystem
 
     void ChangeDirectory(string path);
 
-    IEnumerable<string> ListDirectory(string path, int depth);
+    string GetDirectoryName(string path);
+    DirectoryInfo[] GetDirectories(string path);
+    FileInfo[] GetFiles(string path);
+
+    IEnumerable<string> ListDirectory(string path, int? depth);
 
     string? FileShow(string path, string mode);
     FileResult FileMove(string sourcePath, string destinationPath);

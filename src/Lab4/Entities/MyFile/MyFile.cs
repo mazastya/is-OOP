@@ -1,13 +1,7 @@
 ﻿namespace Itmo.ObjectOrientedProgramming.Lab4.Entities.MyFile;
 
-public class MyFile
+public class MyFile(string nameFile, string? pathFile)
 {
-    public MyFile(string nameFile, string? pathFile)
-    {
-        NameFile = nameFile;
-        PathFile = pathFile;
-    }
-
-    public string NameFile { get; set; }
-    public string? PathFile { get; set; }
+    public string NameFile { get; set; } = nameFile;
+    public string? PathFile { get; set; } = pathFile;
 }

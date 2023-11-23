@@ -4,15 +4,17 @@ using System.Reflection.Metadata;
 using System.Windows.Input;
 using System.Xml;
 using Itmo.ObjectOrientedProgramming.Lab4.Entities;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
 using Itmo.ObjectOrientedProgramming.Lab4.Models.Exception;
 using Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
 using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
+using NSubstitute;
 using Xunit;
 using static Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles.ShowFile;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Tests;
 
-public class ActCompliteTest
+public class ActCompleteTest
 {
     [Fact]
     public void ConnectCommand()
@@ -33,8 +35,7 @@ public class ActCompliteTest
     public void DeleteCommand()
     {
         // Arrange
-        string path1 =
-            @"file delete D:\Programs_from_installation\Rider\mazastya\src\Lab4\bin\Debug\net7.0\Folder1\test1.txt";
+        string path1 = @"file delete C:\\Users\\amaza\\Desktop\\test.txt";
         string[] path = path1.Split(' ');
         var parser = new DeleteFileFlag();
 
@@ -46,13 +47,12 @@ public class ActCompliteTest
     }
 
     [Fact]
-    public void DeleteCommandNotExistFile()
+    public void MoveCommandTest()
     {
         // Arrange
-        string path1 =
-            @"file delete D:\Programs_from_installation\Rider\mazastya\src\Lab4\bin\Debug\net7.0\Folder1\test1.txt";
+        string path1 = @"file move C:\\Users\\amaza\\Desktop\\test.txt C:\\Users\\amaza\\Desktop\\Study\\test.txt";
         string[] path = path1.Split(' ');
-        var parser = new DeleteFileFlag();
+        var parser = new MoveFileFlag();
 
         // Act
         string ans = parser.HandleRequest(path);

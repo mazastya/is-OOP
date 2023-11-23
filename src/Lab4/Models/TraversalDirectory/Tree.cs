@@ -14,7 +14,7 @@ public class Tree(string path) : ITree
 
     public void BuildTree(IContext context, int maxDepth)
     {
-        TraverseTree(new DirectoryInfo(path), string.Empty, maxDepth);
+        TraverseTree(context, string.Empty, maxDepth);
     }
 
     private static void OutputFiles(IEnumerable<FileInfo> files, string tabulation)
@@ -26,14 +26,14 @@ public class Tree(string path) : ITree
         }
     }
 
-    private void TraverseTree(DirectoryInfo directoryInfo, string line, int? maxDepth = null)
+    private void TraverseTree(IContext context, string line, int? maxDepth = null)
     {
         ArgumentException.ThrowIfNullOrEmpty(line);
 
         if (maxDepth is not null && maxDepth == 0) return;
 
         var consoleOutput = new ConsoleOutput();
-        consoleOutput.Output(line + "\ud83d\uddc1" + directoryInfo.Name);
+        consoleOutput.Output(line + "\ud83d\uddc1" + context.FileSystem.GetDirectoryName(Path));
         if (line.Length >= 4 && line.Substring(line.Length - 4) == "\u2514" + "--")
         {
             line = line.Remove(line.Length - 4);
@@ -46,8 +46,8 @@ public class Tree(string path) : ITree
             line += "|   ";
         }
 
-        DirectoryInfo[] childrenDirectories = directoryInfo.GetDirectories();
-        FileInfo[] childrenFiles = directoryInfo.GetFiles();
+        DirectoryInfo[] childrenDirectories = context.FileSystem.GetDirectories(Path);
+        FileInfo[] childrenFiles = context.FileSystem.GetFiles(Path);
 
         if (childrenDirectories.Length != 0)
         {
@@ -60,15 +60,16 @@ public class Tree(string path) : ITree
         }
 
         if (childrenDirectories.Length <= 0) return;
+
         foreach (DirectoryInfo childInfo in childrenDirectories)
         {
             if (childInfo == childrenDirectories.Last())
             {
-                TraverseTree(childInfo, line + "\u2514" + "--", maxDepth is null ? null : maxDepth - 1);
+                TraverseTree(context, line + "\u2514" + "--", maxDepth is null ? null : maxDepth - 1);
             }
             else
             {
-                TraverseTree(childInfo, line + "|--", maxDepth is null ? null : maxDepth - 1);
+                TraverseTree(context, line + "|--", maxDepth is null ? null : maxDepth - 1);
             }
         }
     }

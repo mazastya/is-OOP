@@ -26,7 +26,23 @@ public class FileSystem : IFileSystem
         }
     }
 
-    public IEnumerable<string> ListDirectory(string path, int depth)
+    public string GetDirectoryName(string path)
+    {
+        var directoryInfo = new DirectoryInfo(path);
+        return directoryInfo.Name;
+    }
+
+    public DirectoryInfo[] GetDirectories(string path)
+    {
+        return new DirectoryInfo(path).GetDirectories();
+    }
+
+    public FileInfo[] GetFiles(string path)
+    {
+        return new DirectoryInfo(path).GetFiles();
+    }
+
+    public IEnumerable<string> ListDirectory(string path, int? depth)
     {
         return Directory.EnumerateFileSystemEntries(path);
     }
