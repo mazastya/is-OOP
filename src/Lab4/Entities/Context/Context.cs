@@ -1,9 +1,8 @@
 ﻿using System;
-using System.IO;
 using Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
 using Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
 
-namespace Itmo.ObjectOrientedProgramming.Lab4.Models.Context;
+namespace Itmo.ObjectOrientedProgramming.Lab4.Entities.Context;
 
 public class Context : IContext
 {
@@ -28,7 +27,7 @@ public class Context : IContext
 
         FileSystem = mode.ToUpper(System.Globalization.CultureInfo.CurrentCulture) switch
         {
-            "local" => new FileSystem(),
+            "local" => new FileSystem.FileSystem(),
             _ => throw new ArgumentException("Not found needed mode", mode),
         };
 

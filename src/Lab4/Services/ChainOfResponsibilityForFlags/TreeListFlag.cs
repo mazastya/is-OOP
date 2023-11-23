@@ -1,5 +1,7 @@
-﻿using System.Diagnostics.CodeAnalysis;
+﻿using System;
+using System.Diagnostics.CodeAnalysis;
 using Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
+using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
 
@@ -11,10 +13,12 @@ public class TreeListFlag : HandlerBase
         return request[0] == "tree" && request[1] == "list" && request[2] == "-d";
     }
 
-    protected override string Handle(string[] request)
+    protected override ICommand Handle(string[] request)
     {
-        var tree = new Tree(request[2]);
-        tree.BuildTree(request[2], int.Parse(request[4]));
-        return "tree list complete";
+        ArgumentNullException.ThrowIfNull(request);
+
+        return new TreeList(
+            request[2],
+            maxDepth: int.Parse(request[4]));
     }
 }

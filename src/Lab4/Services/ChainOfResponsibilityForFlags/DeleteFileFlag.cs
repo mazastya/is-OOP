@@ -13,10 +13,10 @@ public class DeleteFileFlag : HandlerBase
         return request[0] == "file" && request[1] == "delete";
     }
 
-    protected override string Handle(string[] request)
+    protected override ICommand Handle(string[] request)
     {
-        var deleteFile = new DeleteFile(request[2]);
-        deleteFile.Execute(request[2]);
-        return "delete complite";
+        ArgumentNullException.ThrowIfNull(request);
+
+        return new DeleteFile(request[2]);
     }
 }

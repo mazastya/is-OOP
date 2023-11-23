@@ -1,17 +1,20 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using Itmo.ObjectOrientedProgramming.Lab4.Entities;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.Context;
+using Itmo.ObjectOrientedProgramming.Lab4.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
-public class DeleteFile : Command
+public class DeleteFile(string pathFile) : ICommand
 {
-    public DeleteFile(string pathFile)
-        : base(pathFile)
+    public FileResult Execute(IContext context)
     {
-    }
+        ArgumentNullException.ThrowIfNull(context);
 
-    public override void Execute(string pathFile)
-    {
-        File.Delete(pathFile);
+        return context.FileSystem.FileDelete(pathFile).Status
+               == FileResultType.Success
+            ? new FileResult(FileResultType.Success)
+            : new FileResult(FileResultType.Failure);
     }
 }

@@ -1,4 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
+﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
 
@@ -9,10 +10,12 @@ public class RenameFileFlag : HandlerBase
         return request[0] == "file" && request[1] == "rename";
     }
 
-    protected override string Handle(string[] request)
+    protected override ICommand Handle(string[] request)
     {
-        var renameFile = new RenameFile(request[2], request[3]);
-        renameFile.Execute(request[2]);
-        return "rename complite";
+        ArgumentNullException.ThrowIfNull(request);
+
+        return new RenameFile(
+            pathFile: request[2],
+            newNameFile: request[3]);
     }
 }

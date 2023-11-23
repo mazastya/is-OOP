@@ -1,20 +1,22 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Entities;
+﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.Context;
+using Itmo.ObjectOrientedProgramming.Lab4.Models;
 using File = System.IO.File;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
-public class MoveFile : Command
+public class MoveFile(string pathFile, string newPathFile) : ICommand
 {
-    public MoveFile(string pathFile, string newPathFile)
-        : base(pathFile)
+    public FileResult Execute(IContext context)
     {
-        NewPathFile = newPathFile;
-    }
+        ArgumentNullException.ThrowIfNull(context);
 
-    private string NewPathFile { get; set; }
-
-    public override void Execute(string pathFile)
-    {
-        File.Move(pathFile, NewPathFile, true);
+        return context.FileSystem.FileMove(
+                   sourcePath: pathFile,
+                   destinationPath: newPathFile).Status
+               == FileResultType.Success
+            ? new FileResult(FileResultType.Success)
+            : new FileResult(FileResultType.Failure);
     }
 }

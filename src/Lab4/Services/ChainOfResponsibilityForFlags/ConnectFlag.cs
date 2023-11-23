@@ -1,4 +1,5 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
+﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
 using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
@@ -10,10 +11,12 @@ public class ConnectFlag : HandlerBase
         return request[0] == "connect" && request[2] == "-m";
     }
 
-    protected override string Handle(string[] request)
+    protected override ICommand Handle(string[] request)
     {
-        var сonnect = new Сonnect(request[1], new FileSystem(), request[3]);
-        сonnect.Execute(request[1]);
-        return "connect complited";
+        ArgumentNullException.ThrowIfNull(request);
+
+        return new Connect(
+            pathFile: request[1],
+            mode: request[3]);
     }
 }

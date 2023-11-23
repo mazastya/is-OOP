@@ -1,40 +1,39 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.Context;
+using Itmo.ObjectOrientedProgramming.Lab4.Services.OutputStrategy;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
 
-public class Tree : ITree
+public class Tree(string path) : ITree
 {
-    public Tree(string path)
-    {
-        Path = path;
-    }
+    public string Path { get; set; } = path;
 
-    public string Path { get; set; }
-    public void BuildTree(string path, int maxDepth)
+    public void BuildTree(IContext context, int maxDepth)
     {
         TraverseTree(new DirectoryInfo(path), string.Empty, maxDepth);
     }
 
-    private static void OutputFiles(FileInfo[] files, string tabulation)
+    private static void OutputFiles(IEnumerable<FileInfo> files, string tabulation)
     {
-        Console.OutputEncoding = Encoding.UTF8;
+        var consoleOutput = new ConsoleOutput();
         foreach (FileInfo file in files)
         {
-            Console.WriteLine(tabulation + "\u2751" + file.Name);
+            consoleOutput.Output(tabulation + "\u2751" + file.Name);
         }
     }
 
     private void TraverseTree(DirectoryInfo directoryInfo, string line, int? maxDepth = null)
     {
         ArgumentException.ThrowIfNullOrEmpty(line);
-        Console.OutputEncoding = Encoding.UTF8;
 
         if (maxDepth is not null && maxDepth == 0) return;
 
-        Console.WriteLine(line + "\ud83d\uddc1" + directoryInfo.Name);
+        var consoleOutput = new ConsoleOutput();
+        consoleOutput.Output(line + "\ud83d\uddc1" + directoryInfo.Name);
         if (line.Length >= 4 && line.Substring(line.Length - 4) == "\u2514" + "--")
         {
             line = line.Remove(line.Length - 4);
@@ -53,7 +52,7 @@ public class Tree : ITree
         if (childrenDirectories.Length != 0)
         {
             OutputFiles(childrenFiles, line + "|   ");
-            Console.WriteLine(line + "|   ");
+            consoleOutput.Output(line + "|   ");
         }
         else
         {

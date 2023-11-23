@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 using Itmo.ObjectOrientedProgramming.Lab4.Models.Exception;
+using ICommand = Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles.ICommand;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
 
@@ -32,5 +33,5 @@ public abstract class HandlerBase : IHandler
     }
 
     protected abstract bool CanHandle(string[] request);
-    protected abstract string Handle(string[] request);
+    protected abstract ICommand Handle(string[] request);
 }

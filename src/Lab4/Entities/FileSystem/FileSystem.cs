@@ -36,13 +36,24 @@ public class FileSystem : IFileSystem
         ArgumentException.ThrowIfNullOrEmpty(path);
         ArgumentException.ThrowIfNullOrEmpty(mode);
 
-        if (File.Exists(path))
+        string finalLine = string.Empty;
+        if (!File.Exists(path)) return finalLine;
+        try
         {
-            return File.ReadAllText(path);
+            var streamReader = new StreamReader(path);
+            string? line = streamReader.ReadLine();
+            while (line != null)
+            {
+                finalLine += line;
+                line = streamReader.ReadLine();
+            }
+
+            streamReader.Close();
+            return finalLine;
         }
-        else
+        catch (ArgumentException exception)
         {
-            return string.Empty;
+            return "Exception: " + exception.Message;
         }
     }
 
@@ -66,6 +77,7 @@ public class FileSystem : IFileSystem
     {
         ArgumentException.ThrowIfNullOrEmpty(sourcePath);
         ArgumentException.ThrowIfNullOrEmpty(destinationPath);
+
         try
         {
             File.Copy(sourcePath, destinationPath);
@@ -100,9 +112,11 @@ public class FileSystem : IFileSystem
         try
         {
             File.Move(
-                path,
-                Path.Combine(Directory.GetParent(path)?.FullName ?? throw new InvalidOperationException(), newFileName),
-                true);
+                sourceFileName: path,
+                destFileName: Path.Combine(
+                    Directory.GetParent(path)?.FullName ?? throw new InvalidOperationException(),
+                    newFileName),
+                overwrite: true);
             return new FileResult(FileResultType.Success);
         }
         catch (FileNotFoundException exception)

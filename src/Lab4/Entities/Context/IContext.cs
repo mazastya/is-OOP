@@ -1,8 +1,7 @@
-﻿using System.IO;
-using Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
+﻿using Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
 using Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
 
-namespace Itmo.ObjectOrientedProgramming.Lab4.Models.Context;
+namespace Itmo.ObjectOrientedProgramming.Lab4.Entities.Context;
 
 public interface IContext
 {

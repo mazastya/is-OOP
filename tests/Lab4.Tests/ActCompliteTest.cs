@@ -8,7 +8,7 @@ using Itmo.ObjectOrientedProgramming.Lab4.Models.Exception;
 using Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
 using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 using Xunit;
-using static Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles.ViewFile;
+using static Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles.ShowFile;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Tests;
 

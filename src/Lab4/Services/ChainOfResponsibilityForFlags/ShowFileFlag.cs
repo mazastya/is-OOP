@@ -1,8 +1,9 @@
-﻿using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
+﻿using System;
+using Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForFlags;
 
-public class ViewFileFlag : HandlerBase
+public class ShowFileFlag : HandlerBase
 {
     protected override bool CanHandle(string[] request)
     {
@@ -21,10 +22,10 @@ public class ViewFileFlag : HandlerBase
         return false;
     }
 
-    protected override string Handle(string[] request)
+    protected override ICommand Handle(string[] request)
     {
-        var viewFile = new ViewFile(request[2]);
-        viewFile.Execute(request[2]);
-        return "viewed file complete";
+        ArgumentNullException.ThrowIfNull(request);
+
+        return new ShowFile(request[2], request[4]);
     }
 }
