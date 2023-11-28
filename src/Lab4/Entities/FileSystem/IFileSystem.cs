@@ -11,10 +11,7 @@ public interface IFileSystem
     void Disconnect();
 
     void ChangeDirectory(string path);
-
-    string GetDirectoryName(string path);
-    DirectoryInfo[] GetDirectories(string path);
-    FileInfo[] GetFiles(string path);
+    bool IsFolder(string path);
 
     IEnumerable<string> ListDirectory(string path, int? depth);
 

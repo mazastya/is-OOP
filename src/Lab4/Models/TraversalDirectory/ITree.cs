@@ -1,8 +1,9 @@
 ﻿using Itmo.ObjectOrientedProgramming.Lab4.Entities.Context;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.PartsOfBlocks;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
 
 public interface ITree
 {
-    public void BuildTree(IContext context, int maxDepth);
+    public IPartOfBlock BuildTree(IContext context, int maxDepth);
 }

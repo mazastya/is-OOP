@@ -11,7 +11,7 @@ public class FileTxtOutput : IOutputStrategy
         _filePath = filePath;
     }
 
-    public void Output(string output)
+    public void Output(string? output)
     {
         File.WriteAllText(_filePath, output);
     }

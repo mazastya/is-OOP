@@ -26,20 +26,9 @@ public class FileSystem : IFileSystem
         }
     }
 
-    public string GetDirectoryName(string path)
+    public bool IsFolder(string path)
     {
-        var directoryInfo = new DirectoryInfo(path);
-        return directoryInfo.Name;
-    }
-
-    public DirectoryInfo[] GetDirectories(string path)
-    {
-        return new DirectoryInfo(path).GetDirectories();
-    }
-
-    public FileInfo[] GetFiles(string path)
-    {
-        return new DirectoryInfo(path).GetFiles();
+        return Directory.Exists(path);
     }
 
     public IEnumerable<string> ListDirectory(string path, int? depth)
