@@ -1,3 +1,5 @@
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.PartsOfBlocks;
+
 namespace Itmo.ObjectOrientedProgramming.Lab4.Entities.FilePart;
 
 public class FilePart : IFilePart
@@ -19,7 +21,7 @@ public class FilePart : IFilePart
     public string Name { get; set; }
     public string Extension { get; }
 
-    public IFilePart CloneFile()
+    public IPartOfBlock Clone()
     {
         return new FilePart(Name);
     }

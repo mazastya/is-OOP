@@ -9,16 +9,19 @@ public class Context : IContext
     public Context(
         string path,
         IFileSystem fileSystem,
-        ITree treeTraversal)
+        ITree treeTraversal,
+        IStringBuildForTree stringBuildForTreeForTree)
     {
         Path = path;
         FileSystem = fileSystem;
         TreeTraversal = treeTraversal;
+        StringBuildForTreeForTree = stringBuildForTreeForTree;
     }
 
     public string Path { get; set; }
     public IFileSystem FileSystem { get; set; }
     public ITree TreeTraversal { get; set; }
+    public IStringBuildForTree StringBuildForTreeForTree { get; set; }
 
     public bool ConnectToPath(string path, string mode)
     {
@@ -40,7 +43,7 @@ public class Context : IContext
 
     public IContext Clone()
     {
-        return new Context(Path, FileSystem, TreeTraversal)
+        return new Context(Path, FileSystem, TreeTraversal, StringBuildForTreeForTree)
         {
             Path = Path,
         };

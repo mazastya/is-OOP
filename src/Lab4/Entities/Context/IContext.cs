@@ -8,6 +8,7 @@ public interface IContext
     public string Path { get; }
     public IFileSystem FileSystem { get; }
     public ITree TreeTraversal { get; set; }
+    public IStringBuildForTree StringBuildForTreeForTree { get; set; }
 
     bool ConnectToPath(string path, string mode);
     void ChangeCurrentPath(string path);

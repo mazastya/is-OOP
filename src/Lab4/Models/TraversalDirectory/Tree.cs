@@ -4,7 +4,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Itmo.ObjectOrientedProgramming.Lab4.Entities.Context;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.FilePart;
 using Itmo.ObjectOrientedProgramming.Lab4.Entities.FileSystem;
+using Itmo.ObjectOrientedProgramming.Lab4.Entities.Folder;
 using Itmo.ObjectOrientedProgramming.Lab4.Entities.PartsOfBlocks;
 using Itmo.ObjectOrientedProgramming.Lab4.Services.OutputStrategy;
 
@@ -12,73 +14,50 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
 
 public class Tree(string path) : ITree
 {
-    // private string Path { get; set; } = path;
-    //
-    // public void BuildTree(IContext context, int maxDepth)
-    // {
-    //     TraverseTree(context, string.Empty, maxDepth);
-    // }
-    //
-    // private static void OutputFiles(IEnumerable<FileInfo> files, string tabulation)
-    // {
-    //     var consoleOutput = new ConsoleOutput();
-    //     foreach (FileInfo file in files)
-    //     {
-    //         consoleOutput.Output(tabulation + "\u2751" + file.Name);
-    //     }
-    // }
-    //
-    // private void TraverseTree(IContext context, string line, int? maxDepth = null)
-    // {
-    //     ArgumentException.ThrowIfNullOrEmpty(line);
-    //
-    //     if (maxDepth is not null && maxDepth == 0) return;
-    //
-    //     var consoleOutput = new ConsoleOutput();
-    //     consoleOutput.Output(line + "\ud83d\uddc1" + context.FileSystem.GetDirectoryName(Path));
-    //     if (line.Length >= 4 && line.Substring(line.Length - 4) == "\u2514" + "--")
-    //     {
-    //         line = line.Remove(line.Length - 4);
-    //         line += "    ";
-    //     }
-    //
-    //     if (line.Length >= 4 && line.Substring(line.Length - 4) == "|--")
-    //     {
-    //         line = line.Remove(line.Length - 4);
-    //         line += "|   ";
-    //     }
-    //
-    //     DirectoryInfo[] childrenDirectories = context.FileSystem.(Path);
-    //     IEnumerable<FileInfo> childrenFiles = context.FileSystem.GetFiles(Path);
-    //
-    //     if (childrenDirectories.Length != 0)
-    //     {
-    //         OutputFiles(childrenFiles, line + "|   ");
-    //         consoleOutput.Output(line + "|   ");
-    //     }
-    //     else
-    //     {
-    //         OutputFiles(childrenFiles, line + "    ");
-    //     }
-    //
-    //     if (childrenDirectories.Length <= 0) return;
-    //
-    //     foreach (DirectoryInfo childInfo in childrenDirectories)
-    //     {
-    //         if (childInfo == childrenDirectories.Last())
-    //         {
-    //             TraverseTree(context, line + "\u2514" + "--", maxDepth is null ? null : maxDepth - 1);
-    //         }
-    //         else
-    //         {
-    //             TraverseTree(context, line + "|--", maxDepth is null ? null : maxDepth - 1);
-    //         }
-    //     }
-    // }
+    public string Path1 { get; } = path;
 
     public IPartOfBlock BuildTree(IContext context, int maxDepth)
     {
         ArgumentNullException.ThrowIfNull(context);
         ArgumentNullException.ThrowIfNull(maxDepth);
+
+        IPartOfBlock partOfBlock = GetPartOfBlock(context.FileSystem, context.Path);
+
+        if (maxDepth <= 0 || partOfBlock is not IFolderPart folderPart)
+        {
+            return partOfBlock;
+        }
+
+        IEnumerable<string> files;
+        try
+        {
+            files = context.FileSystem.ListDirectory(context.Path, maxDepth);
+        }
+        catch (ArgumentException)
+        {
+            // files = ArraySegment<string>.Empty;
+            files = Array.Empty<string>();
+        }
+
+        foreach (string pathFile in files)
+        {
+            IContext newContext = context.Clone();
+            newContext.FileSystem.ChangeDirectory(pathFile);
+            folderPart.AddSubpartsFolder(BuildTree(newContext, maxDepth - 1));
+        }
+
+        return partOfBlock;
+    }
+
+    private static IPartOfBlock GetPartOfBlock(IFileSystem fileSystem, string path)
+    {
+        ArgumentNullException.ThrowIfNull(path);
+        ArgumentNullException.ThrowIfNull(fileSystem);
+
+        string partOfFileName = Path.GetFileName(Path.GetDirectoryName(path)) ?? path;
+
+        return fileSystem.IsFolder(path)
+            ? new FolderPart(partOfFileName)
+            : new FilePart(partOfFileName);
     }
 }
