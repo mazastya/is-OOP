@@ -4,6 +4,6 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Services.ChainOfResponsibilityForF
 
 public interface IHandler
 {
-    void SetNextHandler(IHandler? handler);
+    void SetNextHandler(IHandler handler);
     public string HandleRequest(string[] request);
 }
