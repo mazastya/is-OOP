@@ -3,17 +3,21 @@ using Itmo.ObjectOrientedProgramming.Lab4.Entities.PartsOfBlocks;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Entities.Folder;
 
-public class FolderPart(string name) : IFolderPart
+public class FolderPart : IFolderPart
 {
-    private readonly List<IPartOfBlock> _partOfBlocks = new List<IPartOfBlock>();
+    public FolderPart(string name)
+    {
+        Name = name;
+    }
 
-    public string Name { get; set; } = name;
+    public IList<IPartOfBlock> PartOfBlocks { get; } = new List<IPartOfBlock>();
+    public string Name { get; set; }
 
-    public IEnumerable<IPartOfBlock> Subparts => _partOfBlocks;
+    public IEnumerable<IPartOfBlock> Subparts => PartOfBlocks;
 
     public void AddSubpartsFolder(IPartOfBlock partOfBlock)
     {
-        _partOfBlocks.Add(partOfBlock);
+        PartOfBlocks.Add(partOfBlock);
     }
 
     public IPartOfBlock Clone()
