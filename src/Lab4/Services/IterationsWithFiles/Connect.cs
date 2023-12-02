@@ -5,13 +5,22 @@ using Itmo.ObjectOrientedProgramming.Lab4.Models;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
-public class Connect(string pathFile, string mode) : ICommand
+public class Connect : ICommand
 {
+    private readonly string _pathFile;
+    private readonly string _mode;
+
+    public Connect(string pathFile, string mode)
+    {
+        _pathFile = pathFile;
+        _mode = mode;
+    }
+
     public FileResult Execute(IContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
 
-        return context.FileSystem.Connect(pathFile, mode)
+        return context.FileSystem.Connect(_pathFile, _mode)
             ? new FileResult(FileResultType.Success)
             : new FileResult(FileResultType.Failure);
     }
