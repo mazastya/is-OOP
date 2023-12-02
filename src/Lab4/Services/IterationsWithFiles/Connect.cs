@@ -7,20 +7,20 @@ namespace Itmo.ObjectOrientedProgramming.Lab4.Services.IterationsWithFiles;
 
 public class Connect : ICommand
 {
-    private readonly string _pathFile;
-    private readonly string _mode;
-
     public Connect(string pathFile, string mode)
     {
-        _pathFile = pathFile;
-        _mode = mode;
+        PathFile = pathFile;
+        Mode = mode;
     }
+
+    public string PathFile { get; }
+    public string Mode { get; }
 
     public FileResult Execute(IContext context)
     {
         ArgumentNullException.ThrowIfNull(context);
 
-        return context.FileSystem.Connect(_pathFile, _mode)
+        return context.FileSystem.Connect(PathFile, Mode)
             ? new FileResult(FileResultType.Success)
             : new FileResult(FileResultType.Failure);
     }
