@@ -12,9 +12,14 @@ using Itmo.ObjectOrientedProgramming.Lab4.Services.OutputStrategy;
 
 namespace Itmo.ObjectOrientedProgramming.Lab4.Models.TraversalDirectory;
 
-public class Tree(string path) : ITree
+public class Tree : ITree
 {
-    public string Path1 { get; } = path;
+    public Tree(string path)
+    {
+        Path1 = path;
+    }
+
+    public string Path1 { get; }
 
     public IPartOfBlock BuildTree(IContext context, int maxDepth)
     {
