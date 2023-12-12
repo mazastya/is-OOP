@@ -7,6 +7,6 @@ namespace Models.CurrentStates;
 public class CurrentState : ICurrentState
 {
     public UserRole UserRole { get; set; } = Users.UserRole.None;
-    public required User? User { get; set; }
+    public User? User { get; set; }
     public Card? Card { get; set; }
 }
