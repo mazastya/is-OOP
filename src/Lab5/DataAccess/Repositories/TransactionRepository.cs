@@ -92,7 +92,7 @@ public class TransactionRepository : ITransactionRepository
 
         await command.ExecuteNonQueryAsync();
 
-        AddOperationToHistory(
+        await AddTransactionToHistory(
             currentState,
             "Balance of account with " + currentState.Card?.CardName.ToString(NumberFormatInfo.CurrentInfo) +
             " is updated",
@@ -126,7 +126,7 @@ public class TransactionRepository : ITransactionRepository
         return cards;
     }
 
-    private async void AddOperationToHistory(
+    private async Task AddTransactionToHistory(
         CurrentState currentState,
         string transactionName,
         NpgsqlConnection connection)

@@ -12,7 +12,6 @@ using Npgsql;
 namespace DataAccess.Repositories;
 
 [SuppressMessage("", "CA2007", Justification = "Methods")]
-[SuppressMessage("", "CA1849", Justification = "Methods")]
 [SuppressMessage("", "CA2100", Justification = "Methods")]
 public class CardRepository : ICardRepository
 {
@@ -73,7 +72,7 @@ public class CardRepository : ICardRepository
         command.Parameters.AddWithValue("card_bill", 0);
         command.Prepare();
 
-        using NpgsqlDataReader reader = command.ExecuteReader();
+        using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
 
         if (await reader.ReadAsync() is false)
             return null;
@@ -101,7 +100,7 @@ public class CardRepository : ICardRepository
         command.Parameters.AddWithValue("cardName", cardName);
         command.Prepare();
 
-        using NpgsqlDataReader reader = command.ExecuteReader();
+        using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
 
         if (await reader.ReadAsync() is false)
             return false;
@@ -122,7 +121,7 @@ public class CardRepository : ICardRepository
         command.Parameters.AddWithValue("userId", userId);
         command.Prepare();
 
-        using NpgsqlDataReader reader = command.ExecuteReader();
+        using NpgsqlDataReader reader = await command.ExecuteReaderAsync();
 
         IList<Card> cards = new List<Card>();
         while (await reader.ReadAsync())

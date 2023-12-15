@@ -17,12 +17,13 @@ public class LoginScenario : IScenario
 
     public string Name => "Login";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         string username = AnsiConsole.Ask<string>("Enter your username");
         string passwordLogin = AnsiConsole.Ask<string>("Enter password for '" + username + "': ");
 
-        Result result = IScenario.GetFromAsync(_userService.Login(username, passwordLogin));
+        Task<Result> resultTask = _userService.Login(username, passwordLogin);
+        Result result = await resultTask;
 
         string message;
         switch (result.ResultType)
@@ -37,7 +38,7 @@ public class LoginScenario : IScenario
                 {
                     string password =
                         AnsiConsole.Prompt(new TextPrompt<string>("Confirm your password for '" + username + "': "));
-                    IScenario.GetFromAsync(_userService.AddNewUser(username, password));
+                    await _userService.AddNewUser(username, password);
                     message = "User successfully registered!";
                 }
                 else

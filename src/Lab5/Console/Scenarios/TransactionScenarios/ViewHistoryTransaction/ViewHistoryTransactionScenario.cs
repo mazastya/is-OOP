@@ -24,12 +24,12 @@ public class ViewHistoryTransactionScenario : IScenario
 
     public string Name => "View history transactions";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         if (_currentState.Card != null)
         {
-            IEnumerable<Transaction> transactions =
-                IScenario.GetFromAsync(_transactionService.GetAllTransaction(_currentState.Card.Id));
+            Task<IEnumerable<Transaction>> transactionsTask = _transactionService.GetAllTransaction(_currentState.Card.Id);
+            IEnumerable<Transaction> transactions = await transactionsTask.ConfigureAwait(false);
 
             SelectionPrompt<Transaction> selector = new SelectionPrompt<Transaction>()
                 .Title("Select date transaction:")

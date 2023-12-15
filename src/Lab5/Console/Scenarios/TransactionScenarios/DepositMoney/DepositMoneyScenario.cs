@@ -22,12 +22,13 @@ public class DepositMoneyScenario : IScenario
 
     public string Name => "Deposit money";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         long amount = AnsiConsole.Ask<long>("Enter the amount of money you wish to deposite: ");
         if (_currentState.User != null)
         {
-            Result result = IScenario.GetFromAsync(_transactionService.DepositMoney(_currentState.User.Id, amount));
+            Task<Result> resultTask = _transactionService.DepositMoney(_currentState.User.Id, amount);
+            Result result = await resultTask;
 
             switch (result.ResultType)
             {

@@ -25,11 +25,12 @@ public class ViewInformationScenario : IScenario
 
     public string Name => "View card information";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         if (_currentState.User != null)
         {
-            IEnumerable<Card> cards = IScenario.GetFromAsync(_cardService.GetAllCard(_currentState.User.Id));
+            Task<IEnumerable<Card>> cardsTask = _cardService.GetAllCard(_currentState.User.Id);
+            IEnumerable<Card> cards = await cardsTask.ConfigureAwait(false);
 
             SelectionPrompt<Card> selector = new SelectionPrompt<Card>()
                 .Title("Select card:")

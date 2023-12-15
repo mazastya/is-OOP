@@ -20,15 +20,16 @@ public class AddCardScenario : IScenario
 
     public string Name => "Add new card";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         string cardName = AnsiConsole.Prompt(new TextPrompt<string>("Enter your card name"));
         string passwordCard = AnsiConsole.Prompt(new TextPrompt<string>("Enter password for '" + cardName + "': "));
 
-        Result result = IScenario.GetFromAsync(_cardService.LoginCard(cardName, passwordCard));
+        Task<Result> result = _cardService.LoginCard(cardName, passwordCard);
+        Result res = await result.ConfigureAwait(false);
 
         string message;
-        switch (result.ResultType)
+        switch (res.ResultType)
         {
             case ResultType.Success:
                 message = "Card already exist";
@@ -37,7 +38,7 @@ public class AddCardScenario : IScenario
                 string password =
                     AnsiConsole.Prompt(new TextPrompt<string>("Confirm your password for '" + cardName + "': "));
                 if (_currentState.User != null)
-                    IScenario.GetFromAsync(_cardService.CreateCard(cardName, password, _currentState.User.Id));
+                    await _cardService.CreateCard(cardName, password, _currentState.User.Id).ConfigureAwait(false);
                 message = "User successfully registered!";
                 break;
             default:

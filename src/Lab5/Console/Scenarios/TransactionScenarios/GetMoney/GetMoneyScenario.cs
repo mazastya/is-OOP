@@ -22,12 +22,13 @@ public class GetMoneyScenario : IScenario
 
     public string Name => "Get money";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         long amount = AnsiConsole.Ask<long>("Enter the amount of money you wish to receive: ");
         if (_currentState.User != null)
         {
-            Result result = IScenario.GetFromAsync(_transactionService.GetMoney(_currentState.User.Id, amount));
+            Task<Result> resultTask = _transactionService.GetMoney(_currentState.User.Id, amount);
+            Result result = await resultTask;
 
             string message = result.ResultType switch
             {

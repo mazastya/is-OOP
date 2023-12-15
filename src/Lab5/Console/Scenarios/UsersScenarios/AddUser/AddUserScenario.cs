@@ -15,19 +15,20 @@ public class AddUserScenario : IScenario
     public AddUserScenario(
         IUserService userService,
         CurrentState currentState)
-    {
+        {
         _userService = userService;
         _currentState = currentState;
     }
 
     public string Name => "Add user";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         string username = AnsiConsole.Prompt(new TextPrompt<string>("Enter your username"));
         string passwordLogin = AnsiConsole.Prompt(new TextPrompt<string>("Enter password for '" + username + "': "));
 
-        Result result = IScenario.GetFromAsync(_userService.Login(username, passwordLogin));
+        Task<Result> resultTask = _userService.Login(username, passwordLogin);
+        Result result = await resultTask;
 
         string message;
         if (_currentState.User != null && _currentState.UserRole == UserRole.Admin)
@@ -40,7 +41,7 @@ public class AddUserScenario : IScenario
                 case ResultType.Failure:
                     string password =
                         AnsiConsole.Prompt(new TextPrompt<string>("Confirm your password for '" + username + "': "));
-                    IScenario.GetFromAsync(_userService.AddNewUser(username, password));
+                    await _userService.AddNewUser(username, password);
                     message = "User successfully registered!";
                     break;
                 default:

@@ -22,12 +22,13 @@ public class LoginCardScenario : IScenario
 
     public string Name => "Login card account with card name";
 
-    public Task<Task> Run()
+    public async Task<Task> Run()
     {
         string cardName = AnsiConsole.Ask<string>("Enter your card name");
         string passwordLogin = AnsiConsole.Ask<string>("Enter password for '" + cardName + "': ");
 
-        Result result = IScenario.GetFromAsync(_cardService.LoginCard(cardName, passwordLogin));
+        Task<Result> res = _cardService.LoginCard(cardName, passwordLogin);
+        Result result = await res;
 
         string message;
         switch (result.ResultType)
@@ -43,7 +44,7 @@ public class LoginCardScenario : IScenario
                     string password =
                         AnsiConsole.Prompt(new TextPrompt<string>("Confirm your password for '" + cardName + "': "));
                     if (_currentState.User != null)
-                        IScenario.GetFromAsync(_cardService.CreateCard(cardName, password, _currentState.User.Id));
+                        await _cardService.CreateCard(cardName, password, _currentState.User.Id);
                     message = "Card successfully registered!";
                 }
                 else
